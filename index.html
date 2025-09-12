@@ -388,105 +388,132 @@
             min-height: 1.5rem;
         }
         
-        /* About Section - Style Poster */
+        /* About Section - Style Affiche Cinématographique */
+        :root {
+            /* Variables CSS pour personnalisation facile */
+            --about-bg-dark: #052A3D;
+            --about-title-red: #E63946;
+            --about-text-white: #EAF8FB;
+            --about-text-gray: #B3CDD7;
+            --about-overlay: rgba(0, 0, 0, 0.75);
+        }
+        
         .about {
-            padding: 0;
-            background: var(--bg-dark);
+            /* Section pleine hauteur avec fond sombre */
             min-height: 100vh;
             position: relative;
+            background: linear-gradient(135deg, var(--about-bg-dark) 0%, #000000 100%);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 4rem 2rem;
         }
         
-        .about-poster {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-            height: 80vh;
-            min-height: 600px;
-            background-image: url('assets/about-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: var(--border-radius-large);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-        
-        .about-poster::before {
+        .about::before {
+            /* Photo en arrière-plan peu visible avec overlay cinématographique */
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            /* REMPLACER L'IMAGE ICI : assets/about-bg.jpg */
+            background-image: url('assets/about-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
             z-index: 1;
         }
         
-        .about-content {
-            position: relative;
+        .about::after {
+            /* Overlay sombre pour lisibilité */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--about-overlay);
             z-index: 2;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 3rem 2.5rem;
-            color: var(--white);
         }
         
-        .about-name {
-            font-family: 'Merriweather', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            color: #FF6B6B;
+        .about .container {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .about-title {
+            /* Titre massif style affiche de film */
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: var(--about-title-red);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 4px;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+            /* Effet glow/pulse dramatique */
+            animation: titlePulse 3s ease-in-out infinite alternate;
+            transition: all 0.3s ease;
         }
         
-        .about-text {
-            font-family: 'Merriweather', serif;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: var(--white);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        /* Effet pulse sur le titre */
+        @keyframes titlePulse {
+            0% {
+                text-shadow: 0 0 20px rgba(230, 57, 70, 0.5), 0 0 40px rgba(230, 57, 70, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(230, 57, 70, 0.8), 0 0 60px rgba(230, 57, 70, 0.4);
+            }
+        }
+        
+        /* Hover effect sur le titre */
+        .about-title:hover {
+            color: #FF7A84;
+            text-shadow: 0 0 40px rgba(230, 57, 70, 0.9), 0 0 80px rgba(230, 57, 70, 0.5);
+            transform: scale(1.02);
+        }
+        
+        .about-content {
+            /* Texte descriptif avec animation fade-in */
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-            margin-bottom: 2rem;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .about-text.visible {
+        .about-content.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
+        .about-text {
+            /* Texte bio en colonnes/paragraphe central */
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--about-text-white);
+            text-align: left;
+            margin: 0 auto;
+        }
+        
         .about-text p {
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            color: var(--about-text-gray);
+            font-weight: 300;
         }
         
-        .about-stats {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Merriweather', serif;
-            font-weight: 600;
-            color: #FF6B6B;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-        }
-        
-        .stat-item i {
+        .about-text p:first-child {
+            color: var(--about-text-white);
+            font-weight: 400;
             font-size: 1.2rem;
+        }
+        
+        .about-text strong {
+            color: var(--about-title-red);
+            font-weight: 600;
         }
         
         /* Why Choose Me Section */
@@ -1032,27 +1059,25 @@
                 align-items: center;
             }
             
-            .about-poster {
-                width: 95%;
-                height: 70vh;
-                min-height: 500px;
+            /* Responsive - Mobile */
+            .about {
+                padding: 2rem 1rem;
+                min-height: 80vh;
             }
             
-            .about-content {
-                padding: 2rem 1.5rem;
-            }
-            
-            .about-name {
-                font-size: 2rem;
+            .about-title {
+                font-size: 2.5rem;
                 letter-spacing: 2px;
+                margin-bottom: 2rem;
             }
             
             .about-text {
-                font-size: 0.9rem;
+                font-size: 1rem;
+                text-align: center;
             }
             
-            .about-stats {
-                gap: 1rem;
+            .about-text p:first-child {
+                font-size: 1.1rem;
             }
             
             .why-item {
@@ -1240,47 +1265,35 @@
             </div>
         </section>
         
-        <!-- About Section -->
+        <!-- About Section - Style Affiche Cinématographique -->
         <section id="about-me" class="about" role="region" aria-labelledby="about-title">
-            <div class="about-poster">
+            <div class="container">
+                <!-- Titre massif rouge style film -->
+                <h1 id="about-title" class="about-title">À Propos</h1>
+                
+                <!-- Contenu avec animation fade-in -->
                 <div class="about-content">
-                    <!-- Nom en haut -->
-                    <div>
-                        <h1 id="about-title" class="about-name">ANGE AKONDE</h1>
-                    </div>
-                    
-                    <!-- Texte descriptif -->
                     <div class="about-text">
+                        <!-- PERSONNALISER LE TEXTE BIO ICI -->
                         <p>
-                            DEVELOPER FULLSTACK PASSIONNÉ PAR LES NOUVELLES TECHNOLOGIES. 
-                            EXPERTISE COMPLÈTE EN JAVASCRIPT, REACT, NODE.JS ET ARCHITECTURES MODERNES. 
-                            CRÉATION D'APPLICATIONS WEB PERFORMANTES ET INNOVANTES.
+                            Je suis <strong>Ange AKONDE</strong>, développeur FullStack passionné par les nouvelles technologies 
+                            et l'innovation numérique. Avec plusieurs années d'expérience, je crée des applications 
+                            web modernes, performantes et élégantes.
                         </p>
                         <p>
-                            FORMATEUR ET FONDATEUR D'UN CENTRE DE FORMATION EN AFRIQUE. 
-                            MISSION : DÉMOCRATISER L'ACCÈS AUX COMPÉTENCES NUMÉRIQUES ET 
-                            CONTRIBUER AU DÉVELOPPEMENT TECHNOLOGIQUE DU CONTINENT.
+                            Ma spécialité couvre l'ensemble de la stack technique : de l'interface utilisateur intuitive 
+                            au backend robuste. Je maîtrise JavaScript, React, Node.js, et les architectures modernes 
+                            pour délivrer des solutions complètes et durables.
                         </p>
                         <p>
-                            APPROCHE CENTRÉE SUR L'EXPÉRIENCE UTILISATEUR, LA PERFORMANCE 
-                            ET LA MAINTENABILITÉ DU CODE. SOLUTIONS COMPLÈTES ET DURABLES.
+                            Au-delà du développement, j'ai fondé un centre de formation pour partager mes connaissances 
+                            et former la prochaine génération de développeurs en Afrique. Mon objectif : démocratiser 
+                            l'accès aux compétences numériques et contribuer au développement technologique du continent.
                         </p>
-                    </div>
-                    
-                    <!-- Stats/Info en bas -->
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <i class='bx bx-code-alt' aria-hidden="true"></i>
-                            <span>5+ ANS EXPÉRIENCE</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class='bx bx-world' aria-hidden="true"></i>
-                            <span>PROJETS INTERNATIONAUX</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class='bx bx-group' aria-hidden="true"></i>
-                            <span>FORMATEUR</span>
-                        </div>
+                        <p>
+                            Chaque projet est une opportunité de créer quelque chose d'exceptionnel, en plaçant 
+                            l'expérience utilisateur et la qualité du code au cœur de mes priorités.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -2111,6 +2124,28 @@
                 imageObserver.observe(img);
             });
         }
+
+        // Animation IntersectionObserver pour la section About
+        document.addEventListener('DOMContentLoaded', function() {
+            const aboutContentObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Arrêter d'observer une fois l'animation déclenchée
+                        aboutContentObserver.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observer le contenu de la section About
+            const aboutContent = document.querySelector('.about-content');
+            if (aboutContent) {
+                aboutContentObserver.observe(aboutContent);
+            }
+        });
     </script>
 </body>
 </html>
