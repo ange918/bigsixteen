@@ -389,20 +389,13 @@
         }
         
         /* About Section - Style Affiche Cinématographique */
-        :root {
-            /* Variables CSS pour personnalisation facile */
-            --about-bg-dark: #052A3D;
-            --about-title-red: #E63946;
-            --about-text-white: #EAF8FB;
-            --about-text-gray: #B3CDD7;
-            --about-overlay: rgba(0, 0, 0, 0.75);
-        }
+        /* Variables About utilisant la palette Gecko originale */
         
         .about {
             /* Section pleine hauteur avec fond sombre */
             min-height: 100vh;
             position: relative;
-            background: linear-gradient(135deg, var(--about-bg-dark) 0%, #000000 100%);
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #000000 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -446,34 +439,34 @@
         }
         
         .about-title {
-            /* Titre massif style affiche de film */
+            /* Titre massif style affiche de film avec couleur Gecko */
             font-family: 'Arial Black', Arial, sans-serif;
             font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 900;
-            color: var(--about-title-red);
+            color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 4px;
             margin-bottom: 3rem;
-            text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
-            /* Effet glow/pulse dramatique */
+            text-shadow: 0 0 20px rgba(25, 209, 230, 0.5);
+            /* Effet glow/pulse dramatique avec couleur Gecko */
             animation: titlePulse 3s ease-in-out infinite alternate;
             transition: all 0.3s ease;
         }
         
-        /* Effet pulse sur le titre */
+        /* Effet pulse sur le titre avec palette Gecko */
         @keyframes titlePulse {
             0% {
-                text-shadow: 0 0 20px rgba(230, 57, 70, 0.5), 0 0 40px rgba(230, 57, 70, 0.3);
+                text-shadow: 0 0 20px rgba(25, 209, 230, 0.5), 0 0 40px rgba(25, 209, 230, 0.3);
             }
             100% {
-                text-shadow: 0 0 30px rgba(230, 57, 70, 0.8), 0 0 60px rgba(230, 57, 70, 0.4);
+                text-shadow: 0 0 30px rgba(25, 209, 230, 0.8), 0 0 60px rgba(25, 209, 230, 0.4);
             }
         }
         
         /* Hover effect sur le titre */
         .about-title:hover {
-            color: #FF7A84;
-            text-shadow: 0 0 40px rgba(230, 57, 70, 0.9), 0 0 80px rgba(230, 57, 70, 0.5);
+            color: #4EDCEC;
+            text-shadow: 0 0 40px rgba(25, 209, 230, 0.9), 0 0 80px rgba(25, 209, 230, 0.5);
             transform: scale(1.02);
         }
         
@@ -494,25 +487,25 @@
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--about-text-white);
+            color: var(--white);
             text-align: left;
             margin: 0 auto;
         }
         
         .about-text p {
             margin-bottom: 1.5rem;
-            color: var(--about-text-gray);
+            color: var(--muted);
             font-weight: 300;
         }
         
         .about-text p:first-child {
-            color: var(--about-text-white);
+            color: var(--white);
             font-weight: 400;
             font-size: 1.2rem;
         }
         
         .about-text strong {
-            color: var(--about-title-red);
+            color: var(--accent);
             font-weight: 600;
         }
         
