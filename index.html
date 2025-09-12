@@ -388,24 +388,74 @@
             min-height: 1.5rem;
         }
         
-        /* About Section */
+        /* About Section - Style Poster */
         .about {
-            padding: var(--section-padding);
-            background: var(--white);
+            padding: 0;
+            background: var(--bg-dark);
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .about-poster {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            min-height: 600px;
+            background-image: url('assets/about-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius-large);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .about-poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
         }
         
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem 2.5rem;
+            color: var(--white);
+        }
+        
+        .about-name {
+            font-family: 'Merriweather', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: #FF6B6B;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         
         .about-text {
+            font-family: 'Merriweather', serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease;
-            font-family: 'Merriweather', serif;
+            transition: all 0.8s ease;
+            margin-bottom: 2rem;
         }
         
         .about-text.visible {
@@ -413,12 +463,30 @@
             transform: translateY(0);
         }
         
-        .about-image {
-            width: 100%;
-            height: 500px;
-            border-radius: var(--border-radius-large);
-            object-fit: cover;
-            box-shadow: 0 20px 60px rgba(5, 42, 61, 0.15);
+        .about-text p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Merriweather', serif;
+            font-weight: 600;
+            color: #FF6B6B;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        .stat-item i {
+            font-size: 1.2rem;
         }
         
         /* Why Choose Me Section */
@@ -964,13 +1032,27 @@
                 align-items: center;
             }
             
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .about-poster {
+                width: 95%;
+                height: 70vh;
+                min-height: 500px;
             }
             
-            .about-image {
-                height: 300px;
+            .about-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .about-name {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .about-text {
+                font-size: 0.9rem;
+            }
+            
+            .about-stats {
+                gap: 1rem;
             }
             
             .why-item {
@@ -1160,29 +1242,46 @@
         
         <!-- About Section -->
         <section id="about-me" class="about" role="region" aria-labelledby="about-title">
-            <div class="container">
-                <h2 id="about-title" class="text-center">À propos de moi</h2>
+            <div class="about-poster">
                 <div class="about-content">
+                    <!-- Nom en haut -->
+                    <div>
+                        <h1 id="about-title" class="about-name">ANGE AKONDE</h1>
+                    </div>
+                    
+                    <!-- Texte descriptif -->
                     <div class="about-text">
                         <p>
-                            Passionné par le développement web et les nouvelles technologies, je suis un développeur FullStack 
-                            avec plusieurs années d'expérience dans la création d'applications web modernes et performantes. 
-                            Ma expertise couvre les technologies front-end et back-end, me permettant de créer des solutions 
-                            complètes et innovantes.
+                            DEVELOPER FULLSTACK PASSIONNÉ PAR LES NOUVELLES TECHNOLOGIES. 
+                            EXPERTISE COMPLÈTE EN JAVASCRIPT, REACT, NODE.JS ET ARCHITECTURES MODERNES. 
+                            CRÉATION D'APPLICATIONS WEB PERFORMANTES ET INNOVANTES.
                         </p>
                         <p>
-                            Spécialisé dans JavaScript, React, Node.js, et les technologies web modernes, j'ai eu l'opportunité 
-                            de travailler sur divers projets allant des sites vitrines aux applications d'entreprise complexes. 
-                            Mon approche se concentre sur l'expérience utilisateur, la performance et la maintenabilité du code.
+                            FORMATEUR ET FONDATEUR D'UN CENTRE DE FORMATION EN AFRIQUE. 
+                            MISSION : DÉMOCRATISER L'ACCÈS AUX COMPÉTENCES NUMÉRIQUES ET 
+                            CONTRIBUER AU DÉVELOPPEMENT TECHNOLOGIQUE DU CONTINENT.
                         </p>
                         <p>
-                            En parallèle de mon activité de développement, j'ai créé un centre de formation pour partager mes 
-                            connaissances et former la prochaine génération de développeurs en Afrique. Mon objectif est de 
-                            démocratiser l'accès aux compétences numériques et de contribuer au développement technologique 
-                            du continent.
+                            APPROCHE CENTRÉE SUR L'EXPÉRIENCE UTILISATEUR, LA PERFORMANCE 
+                            ET LA MAINTENABILITÉ DU CODE. SOLUTIONS COMPLÈTES ET DURABLES.
                         </p>
                     </div>
-                    <img src="assets/about-bg.jpg" alt="Ange AKONDE" class="about-image">
+                    
+                    <!-- Stats/Info en bas -->
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <i class='bx bx-code-alt' aria-hidden="true"></i>
+                            <span>5+ ANS EXPÉRIENCE</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class='bx bx-world' aria-hidden="true"></i>
+                            <span>PROJETS INTERNATIONAUX</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class='bx bx-group' aria-hidden="true"></i>
+                            <span>FORMATEUR</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
