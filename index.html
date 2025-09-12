@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
     <style>
         /* CSS Variables - Gecko Color Palette */
         :root {
@@ -420,26 +423,29 @@
         /* Why Choose Me Section */
         .why-choose {
             padding: var(--section-padding);
-            background: var(--brown);
-            color: var(--white);
+            background: var(--white);
         }
         
-        .why-choose-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .why-choose h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--bg-dark);
+        }
+        
+        .why-choose-container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
         .why-item {
-            background: rgba(234, 248, 251, 0.05);
-            padding: 1.5rem;
-            border-radius: var(--border-radius-large);
-            border-left: 4px solid var(--accent);
+            display: flex;
+            align-items: center;
+            padding: 3rem 2rem;
+            margin: 0;
+            border-radius: 0;
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease;
-            backdrop-filter: blur(10px);
         }
         
         .why-item.visible {
@@ -447,47 +453,65 @@
             transform: translateY(0);
         }
         
-        .why-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(25, 209, 230, 0.2);
-            background: rgba(234, 248, 251, 0.08);
+        .why-item:nth-child(even) {
+            background: var(--brown);
+            color: var(--white);
+            flex-direction: row-reverse;
         }
         
-        .why-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+        .why-item:nth-child(odd) {
+            background: rgba(179, 205, 215, 0.1);
+            color: var(--bg-dark);
         }
         
         .why-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--accent), var(--ocean));
-            border-radius: var(--border-radius);
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            box-shadow: 0 8px 25px rgba(25, 209, 230, 0.3);
+            margin: 0 3rem;
+            border-radius: 50%;
         }
         
-        .why-icon svg {
-            width: 35px;
-            height: 35px;
-            fill: var(--white);
+        .why-item:nth-child(even) .why-icon {
+            background: rgba(25, 209, 230, 0.15);
+            color: var(--accent);
+        }
+        
+        .why-item:nth-child(odd) .why-icon {
+            background: var(--accent);
+            color: var(--white);
+        }
+        
+        .why-icon i {
+            font-size: 2.5rem;
+        }
+        
+        .why-content {
+            flex: 1;
         }
         
         .why-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .why-item:nth-child(even) .why-content h3 {
             color: var(--white);
-            margin: 0;
-            font-size: 1.1rem;
         }
         
         .why-content p {
-            color: var(--muted);
+            font-size: 1.1rem;
             line-height: 1.7;
             margin: 0;
+            opacity: 0.9;
+        }
+        
+        .why-item:nth-child(even) .why-content p {
+            color: var(--muted);
         }
         
         /* Projects Section */
@@ -934,12 +958,22 @@
                 grid-template-columns: 1fr;
             }
             
-            .why-choose-grid {
-                grid-template-columns: 1fr;
+            .why-item {
+                flex-direction: column !important;
+                text-align: center;
+                padding: 2rem 1rem;
             }
             
-            .why-item {
-                text-align: left;
+            .why-item:nth-child(even) {
+                flex-direction: column !important;
+            }
+            
+            .why-icon {
+                margin: 0 0 1.5rem 0;
+            }
+            
+            .why-content h3 {
+                font-size: 1.5rem;
             }
             
             .projects-grid {
@@ -1146,84 +1180,41 @@
         <!-- Why Choose Me Section -->
         <section class="why-choose" role="region" aria-labelledby="why-title">
             <div class="container">
-                <h2 id="why-title" class="text-center">Pourquoi me choisir</h2>
-                <div class="why-choose-grid">
+                <h2 id="why-title">Pourquoi me choisir</h2>
+                <div class="why-choose-container">
                     <div class="why-item">
-                        <img src="assets/expertise-tech.jpg" alt="Illustration expertise technique" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <div class="why-header">
-                            <div class="why-icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                </svg>
-                            </div>
-                            <div class="why-content">
-                                <h3>Expertise Technique</h3>
-                            </div>
+                        <div class="why-icon">
+                            <i class='bx bx-code-alt' aria-hidden="true"></i>
                         </div>
                         <div class="why-content">
+                            <h3>EXPERTISE TECHNIQUE</h3>
                             <p>
-                                Maîtrise complète des technologies web modernes avec une approche orientée performance 
-                                et bonnes pratiques. Code propre, maintenable et scalable pour des projets durables.
+                                Maîtrise complète des technologies modernes, frameworks et architectures cloud pour des solutions robustes et 
+                                évolutives.
                             </p>
                         </div>
                     </div>
                     
                     <div class="why-item">
-                        <img src="assets/user-centered.jpg" alt="Illustration approche centrée utilisateur" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <div class="why-header">
-                            <div class="why-icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                </svg>
-                            </div>
-                            <div class="why-content">
-                                <h3>Approche Centrée Utilisateur</h3>
-                            </div>
+                        <div class="why-icon">
+                            <i class='bx bx-layer' aria-hidden="true"></i>
                         </div>
                         <div class="why-content">
+                            <h3>APPROCHE AGILE</h3>
                             <p>
-                                Design thinking et UX/UI au cœur de chaque projet. Création d'interfaces intuitives 
-                                et d'expériences utilisateur mémorables qui convertissent et fidélisent.
+                                Méthodologies agiles et DevOps pour des livraisons rapides et une collaboration efficace avec vos équipes.
                             </p>
                         </div>
                     </div>
                     
                     <div class="why-item">
-                        <img src="assets/delivery-time.jpg" alt="Illustration livraison dans les délais" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <div class="why-header">
-                            <div class="why-icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8-1.41-1.42z"/>
-                                </svg>
-                            </div>
-                            <div class="why-content">
-                                <h3>Livraison dans les Délais</h3>
-                            </div>
+                        <div class="why-icon">
+                            <i class='bx bx-world' aria-hidden="true"></i>
                         </div>
                         <div class="why-content">
+                            <h3>VISION GLOBALE</h3>
                             <p>
-                                Respect strict des deadlines avec une communication transparente tout au long du projet. 
-                                Méthodologie agile et itérative pour un feedback continu et des résultats optimaux.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="why-item">
-                        <img src="assets/continuous-support.jpg" alt="Illustration support continu" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                        <div class="why-header">
-                            <div class="why-icon">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                </svg>
-                            </div>
-                            <div class="why-content">
-                                <h3>Support Continu</h3>
-                            </div>
-                        </div>
-                        <div class="why-content">
-                            <p>
-                                Accompagnement post-livraison avec maintenance, mises à jour et support technique. 
-                                Relation partenaire à long terme pour faire évoluer votre projet selon vos besoins.
+                                Expérience internationale combinée à une compréhension profonde des marchés africains et européens.
                             </p>
                         </div>
                     </div>
