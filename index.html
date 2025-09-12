@@ -444,13 +444,22 @@
             margin: 0;
             border-radius: 0;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Animation depuis la gauche pour les éléments impairs */
+        .why-item:nth-child(odd) {
+            transform: translateX(-100px);
+        }
+        
+        /* Animation depuis la droite pour les éléments pairs */
+        .why-item:nth-child(even) {
+            transform: translateX(100px);
         }
         
         .why-item.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
         
         .why-item:nth-child(even) {
@@ -1605,8 +1614,14 @@
             });
             
             // Observer tous les éléments animables
-            document.querySelectorAll('.about-text, .why-item, .project-card').forEach(el => {
+            document.querySelectorAll('.about-text, .project-card').forEach(el => {
                 observer.observe(el);
+            });
+            
+            // Observer spécial pour les bandes why-item avec animation alternée
+            const whyItems = document.querySelectorAll('.why-item');
+            whyItems.forEach((item, index) => {
+                observer.observe(item);
             });
         }
         
