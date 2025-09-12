@@ -471,19 +471,20 @@
         
         .why-choose-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
             margin-top: 3rem;
         }
         
         .why-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            background: rgba(234, 248, 251, 0.05);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
+            border-left: 4px solid var(--accent);
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease;
+            backdrop-filter: blur(10px);
         }
         
         .why-item.visible {
@@ -491,38 +492,47 @@
             transform: translateY(0);
         }
         
-        .why-item:nth-child(even) {
-            direction: rtl;
+        .why-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(25, 209, 230, 0.2);
+            background: rgba(234, 248, 251, 0.08);
         }
         
-        .why-item:nth-child(even) > * {
-            direction: ltr;
-        }
-        
-        .why-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
+        .why-header {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 1.5rem;
             margin-bottom: 1.5rem;
         }
         
+        .why-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--ocean));
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(25, 209, 230, 0.3);
+        }
+        
         .why-icon svg {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             fill: var(--white);
         }
         
         .why-content h3 {
-            color: var(--accent);
-            margin-bottom: 1rem;
+            color: var(--white);
+            margin: 0;
+            font-size: 1.4rem;
         }
         
         .why-content p {
             color: var(--muted);
+            line-height: 1.7;
+            margin: 0;
         }
         
         /* Projects Section */
@@ -946,13 +956,12 @@
                 grid-template-columns: 1fr;
             }
             
-            .why-item {
+            .why-choose-grid {
                 grid-template-columns: 1fr;
-                text-align: center;
             }
             
-            .why-item:nth-child(even) {
-                direction: ltr;
+            .why-item {
+                text-align: left;
             }
             
             .projects-grid {
@@ -1176,92 +1185,78 @@
                 <h2 id="why-title" class="text-center">Pourquoi me choisir</h2>
                 <div class="why-choose-grid">
                     <div class="why-item">
-                        <div class="why-content">
+                        <div class="why-header">
                             <div class="why-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                 </svg>
                             </div>
-                            <h3>Expertise Technique</h3>
+                            <div class="why-content">
+                                <h3>Expertise Technique</h3>
+                            </div>
+                        </div>
+                        <div class="why-content">
                             <p>
                                 Maîtrise complète des technologies web modernes avec une approche orientée performance 
-                                et bonnes pratiques. Code propre, maintenable et scalable.
+                                et bonnes pratiques. Code propre, maintenable et scalable pour des projets durables.
                             </p>
-                        </div>
-                        <div class="why-visual">
-                            <div class="code-snippet" aria-hidden="true">
-                                <div class="code-line">const expertise = {</div>
-                                <div class="code-line">  frontend: ['React', 'Vue', 'TypeScript'],</div>
-                                <div class="code-line">  backend: ['Node.js', 'Python', 'PHP'],</div>
-                                <div class="code-line">  database: ['MongoDB', 'PostgreSQL']</div>
-                                <div class="code-line">};</div>
-                            </div>
                         </div>
                     </div>
                     
                     <div class="why-item">
-                        <div class="why-content">
+                        <div class="why-header">
                             <div class="why-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                 </svg>
                             </div>
-                            <h3>Approche Centrée Utilisateur</h3>
+                            <div class="why-content">
+                                <h3>Approche Centrée Utilisateur</h3>
+                            </div>
+                        </div>
+                        <div class="why-content">
                             <p>
                                 Design thinking et UX/UI au cœur de chaque projet. Création d'interfaces intuitives 
-                                et d'expériences utilisateur mémorables qui convertissent.
+                                et d'expériences utilisateur mémorables qui convertissent et fidélisent.
                             </p>
-                        </div>
-                        <div class="why-visual">
-                            <div class="ux-diagram" aria-hidden="true">
-                                <div class="ux-circle">UX</div>
-                                <div class="ux-circle">UI</div>
-                                <div class="ux-circle">CODE</div>
-                            </div>
                         </div>
                     </div>
                     
                     <div class="why-item">
-                        <div class="why-content">
+                        <div class="why-header">
                             <div class="why-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8-1.41-1.42z"/>
                                 </svg>
                             </div>
-                            <h3>Livraison dans les Délais</h3>
+                            <div class="why-content">
+                                <h3>Livraison dans les Délais</h3>
+                            </div>
+                        </div>
+                        <div class="why-content">
                             <p>
                                 Respect strict des deadlines avec une communication transparente tout au long du projet. 
-                                Méthodologie agile et itérative pour un feedback continu.
+                                Méthodologie agile et itérative pour un feedback continu et des résultats optimaux.
                             </p>
-                        </div>
-                        <div class="why-visual">
-                            <div class="timeline-diagram" aria-hidden="true">
-                                <div class="timeline-step active">Planning</div>
-                                <div class="timeline-step active">Development</div>
-                                <div class="timeline-step active">Testing</div>
-                                <div class="timeline-step">Launch</div>
-                            </div>
                         </div>
                     </div>
                     
                     <div class="why-item">
-                        <div class="why-content">
+                        <div class="why-header">
                             <div class="why-icon">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                 </svg>
                             </div>
-                            <h3>Support Continu</h3>
+                            <div class="why-content">
+                                <h3>Support Continu</h3>
+                            </div>
+                        </div>
+                        <div class="why-content">
                             <p>
                                 Accompagnement post-livraison avec maintenance, mises à jour et support technique. 
-                                Relation partenaire à long terme pour faire évoluer votre projet.
+                                Relation partenaire à long terme pour faire évoluer votre projet selon vos besoins.
                             </p>
-                        </div>
-                        <div class="why-visual">
-                            <div class="support-diagram" aria-hidden="true">
-                                <div class="support-circle">24/7</div>
-                                <div class="support-text">Support</div>
-                            </div>
                         </div>
                     </div>
                 </div>
