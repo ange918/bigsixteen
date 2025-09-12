@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre de Formation - Ange AKONDE</title>
+    <meta name="description" content="Centre moderne de formation dédié au développement web, au design digital et à l'innovation technologique en Afrique.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables - Gecko Color Palette */
+        :root {
+            --bg-dark: #052A3D;
+            --ocean: #117192;
+            --accent: #19D1E6;
+            --brown: #614943;
+            --muted: #B3CDD7;
+            --white: #EAF8FB;
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 120px 0;
+            --container-padding: 0 20px;
+            --border-radius: 16px;
+            --border-radius-large: 24px;
+            
+            /* Transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--bg-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--container-padding);
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--bg-dark);
+            opacity: 0.8;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--ocean));
+            color: var(--white);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(25, 209, 230, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+        
+        /* Header (Identical to index.html) */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(234, 248, 251, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(179, 205, 215, 0.2);
+        }
+        
+        .header.scrolled {
+            background: rgba(234, 248, 251, 0.98);
+            box-shadow: 0 4px 20px rgba(5, 42, 61, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--accent), var(--ocean));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--bg-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--accent);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dropdown-toggle::after {
+            content: '▼';
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 40px rgba(5, 42, 61, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            min-width: 200px;
+            z-index: 100;
+            border: 1px solid rgba(179, 205, 215, 0.3);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--bg-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(179, 205, 215, 0.2);
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu a:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--bg-dark);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--white);
+            transform: translateX(-100%);
+            transition: var(--transition);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--bg-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-dark), var(--ocean));
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50" cy="50" r="50"><stop offset="0" stop-color="%2319D1E6" stop-opacity=".1"/><stop offset="1" stop-color="%2319D1E6" stop-opacity="0"/></radialGradient></defs><circle cx="10" cy="10" r="10" fill="url(%23a)"/><circle cx="30" cy="10" r="10" fill="url(%23a)"/><circle cx="50" cy="10" r="10" fill="url(%23a)"/><circle cx="70" cy="10" r="10" fill="url(%23a)"/><circle cx="90" cy="10" r="10" fill="url(%23a)"/></svg>') repeat;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--muted);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Mission Section */
+        .mission {
+            padding: var(--section-padding);
+            background: var(--white);
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(179, 205, 215, 0.2);
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(17, 113, 146, 0.15);
+        }
+        
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), var(--ocean));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mission-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--white);
+        }
+        
+        .mission-card h3 {
+            color: var(--bg-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .mission-card p {
+            color: var(--bg-dark);
+            opacity: 0.8;
+        }
+        
+        /* Programs Section */
+        .programs {
+            padding: var(--section-padding);
+            background: var(--muted);
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .program-card {
+            background: var(--white);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
+            transition: var(--transition);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(17, 113, 146, 0.2);
+        }
+        
+        .program-header {
+            background: linear-gradient(135deg, var(--brown), var(--ocean));
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .program-header h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .program-duration {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .program-content {
+            padding: 2rem;
+        }
+        
+        .program-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .program-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: var(--bg-dark);
+            opacity: 0.8;
+        }
+        
+        .program-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .program-price {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ocean);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Team Testimonials Section */
+        .team-testimonials {
+            padding: var(--section-padding);
+            background: var(--white);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-large);
+            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(179, 205, 215, 0.2);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(5, 42, 61, 0.15);
+        }
+        
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+        }
+        
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--bg-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-role {
+            color: var(--ocean);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--bg-dark);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--bg-dark), var(--ocean));
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Footer (Identical to index.html) */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--muted);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(179, 205, 215, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--ocean);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            :root {
+                --section-padding: 80px 0;
+                --container-padding: 0 15px;
+            }
+            
+            .mission-card,
+            .program-card,
+            .testimonial-card {
+                margin: 0 10px;
+            }
+        }
+        
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: 2rem; }
+        
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        
+        /* Skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 8px;
+            text-decoration: none;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
+    <!-- Header (Identical to index.html) -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="index.html" class="logo" aria-label="Retour à l'accueil">AK</a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="nav" role="navigation" aria-label="Navigation principale">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                                À-propos
+                            </a>
+                            <div class="dropdown-menu" role="menu">
+                                <a href="index.html#about-me" role="menuitem">À-propos de moi</a>
+                                <a href="center.html" role="menuitem">À-propos de mon centre</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#projects" class="nav-link">Expériences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#contact" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-primary">Contact</a>
+                </nav>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu mobile" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" role="navigation" aria-label="Navigation mobile">
+            <a href="index.html">Accueil</a>
+            <a href="index.html#about-me">À-propos de moi</a>
+            <a href="center.html">À-propos de mon centre</a>
+            <a href="index.html#projects">Expériences</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" role="banner">
+            <div class="hero-content">
+                <div class="container">
+                    <h1 class="hero-title">À propos de mon centre de formation</h1>
+                    <p class="hero-subtitle">
+                        Un centre moderne de formation dédié au développement web, au design digital et à l'innovation 
+                        technologique. Notre mission est de former une nouvelle génération de créateurs numériques en Afrique.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mission & Activities Section -->
+        <section class="mission" role="region" aria-labelledby="mission-title">
+            <div class="container">
+                <h2 id="mission-title" class="text-center">Notre Mission & Activités</h2>
+                <div class="mission-grid">
+                    <div class="mission-card fade-in">
+                        <div class="mission-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <h3>Formation Technologique</h3>
+                        <p>
+                            Programmes complets en développement web, mobile et design digital avec une approche 
+                            pratique et orientée projet.
+                        </p>
+                    </div>
+                    
+                    <div class="mission-card fade-in">
+                        <div class="mission-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                        </div>
+                        <h3>Mentorat Personnalisé</h3>
+                        <p>
+                            Accompagnement individuel et suivi personnalisé pour garantir la réussite de chaque 
+                            apprenant dans son parcours.
+                        </p>
+                    </div>
+                    
+                    <div class="mission-card fade-in">
+                        <div class="mission-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Certification Reconnue</h3>
+                        <p>
+                            Délivrance de certificats reconnus par l'industrie et préparation aux certifications 
+                            internationales.
+                        </p>
+                    </div>
+                    
+                    <div class="mission-card fade-in">
+                        <div class="mission-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                            </svg>
+                        </div>
+                        <h3>Insertion Professionnelle</h3>
+                        <p>
+                            Accompagnement vers l'emploi avec notre réseau de partenaires entreprises et aide 
+                            à l'entrepreneuriat digital.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Programs Section -->
+        <section class="programs" role="region" aria-labelledby="programs-title">
+            <div class="container">
+                <h2 id="programs-title" class="text-center">Nos Programmes de Formation</h2>
+                <div class="programs-grid">
+                    <div class="program-card fade-in">
+                        <div class="program-header">
+                            <h3>Développement Web Full-Stack</h3>
+                            <div class="program-duration">6 mois • Temps plein</div>
+                        </div>
+                        <div class="program-content">
+                            <ul class="program-features">
+                                <li>HTML5, CSS3, JavaScript ES6+</li>
+                                <li>React.js et Node.js</li>
+                                <li>Bases de données MongoDB/PostgreSQL</li>
+                                <li>API REST et authentification</li>
+                                <li>Git/GitHub et déploiement</li>
+                                <li>Projet final en équipe</li>
+                            </ul>
+                            <div class="program-price">500 000 FCFA</div>
+                            <a href="mailto:akondejunior18@gmail.com?subject=Inscription%20Formation%20Full-Stack" class="btn btn-primary">
+                                S'inscrire
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card fade-in">
+                        <div class="program-header">
+                            <h3>Design UI/UX & Prototypage</h3>
+                            <div class="program-duration">4 mois • Temps partiel</div>
+                        </div>
+                        <div class="program-content">
+                            <ul class="program-features">
+                                <li>Principes du design d'interface</li>
+                                <li>Recherche utilisateur et personas</li>
+                                <li>Wireframing et prototypage</li>
+                                <li>Figma et Adobe Creative Suite</li>
+                                <li>Design system et composants</li>
+                                <li>Portfolio professionnel</li>
+                            </ul>
+                            <div class="program-price">350 000 FCFA</div>
+                            <a href="mailto:akondejunior18@gmail.com?subject=Inscription%20Formation%20UI/UX" class="btn btn-primary">
+                                S'inscrire
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card fade-in">
+                        <div class="program-header">
+                            <h3>Développement Mobile React Native</h3>
+                            <div class="program-duration">4 mois • Temps plein</div>
+                        </div>
+                        <div class="program-content">
+                            <ul class="program-features">
+                                <li>Fondamentaux React Native</li>
+                                <li>Navigation et gestion d'état</li>
+                                <li>APIs natives et intégrations</li>
+                                <li>Publication App Store/Play Store</li>
+                                <li>Performance et optimisation</li>
+                                <li>Application complète de A à Z</li>
+                            </ul>
+                            <div class="program-price">450 000 FCFA</div>
+                            <a href="mailto:akondejunior18@gmail.com?subject=Inscription%20Formation%20Mobile" class="btn btn-primary">
+                                S'inscrire
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card fade-in">
+                        <div class="program-header">
+                            <h3>E-commerce & WordPress</h3>
+                            <div class="program-duration">3 mois • Week-ends</div>
+                        </div>
+                        <div class="program-content">
+                            <ul class="program-features">
+                                <li>Administration WordPress avancée</li>
+                                <li>WooCommerce et e-commerce</li>
+                                <li>Thèmes et plugins personnalisés</li>
+                                <li>SEO et référencement</li>
+                                <li>Paiement en ligne et sécurité</li>
+                                <li>Site e-commerce complet</li>
+                            </ul>
+                            <div class="program-price">250 000 FCFA</div>
+                            <a href="mailto:akondejunior18@gmail.com?subject=Inscription%20Formation%20E-commerce" class="btn btn-primary">
+                                S'inscrire
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card fade-in">
+                        <div class="program-header">
+                            <h3>Marketing Digital & Analytics</h3>
+                            <div class="program-duration">2 mois • Soirées</div>
+                        </div>
+                        <div class="program-content">
+                            <ul class="program-features">
+                                <li>Stratégie marketing digital</li>
+                                <li>Réseaux sociaux et publicité</li>
+                                <li>Google Analytics et SEO</li>
+                                <li>Email marketing et automation</li>
+                                <li>Content marketing et blogging</li>
+                                <li>Campagne marketing complète</li>
+                            </ul>
+                            <div class="program-price">200 000 FCFA</div>
+                            <a href="mailto:akondejunior18@gmail.com?subject=Inscription%20Formation%20Marketing" class="btn btn-primary">
+                                S'inscrire
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card fade-in">
+                        <div class="program-header">
+                            <h3>Entrepreneuriat Tech</h3>
+                            <div class="program-duration">8 semaines • Intensif</div>
+                        </div>
+                        <div class="program-content">
+                            <ul class="program-features">
+                                <li>Business model et validation</li>
+                                <li>Pitch et levée de fonds</li>
+                                <li>Équipe et leadership</li>
+                                <li>Lean startup et MVP</li>
+                                <li>Juridique et propriété intellectuelle</li>
+                                <li>Plan d'affaires complet</li>
+                            </ul>
+                            <div class="program-price">300 000 FCFA</div>
+                            <a href="mailto:akondejunior18@gmail.com?subject=Inscription%20Formation%20Entrepreneuriat" class="btn btn-primary">
+                                S'inscrire
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Testimonials Section -->
+        <section class="team-testimonials" role="region" aria-labelledby="team-title">
+            <div class="container">
+                <h2 id="team-title" class="text-center">Témoignages de Notre Équipe</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <!-- 
+                            REMPLACER L'AVATAR DIRECTEUR:
+                            Placez la photo dans le dossier assets/ et renommez-la 'director.jpg'
+                            Recommandations: Format JPG/PNG, taille 200x200px, format carré
+                        -->
+                        <img src="assets/director.jpg" alt="Photo de Marie Kouassi, Directrice Pédagogique" class="testimonial-avatar">
+                        <h4 class="testimonial-name">Marie Kouassi</h4>
+                        <p class="testimonial-role">Directrice Pédagogique</p>
+                        <p class="testimonial-text">
+                            "Avec plus de 10 ans d'expérience dans l'éducation technologique, notre mission est de 
+                            démocratiser l'accès aux compétences numériques en Afrique et de former les talents de demain."
+                        </p>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <!-- 
+                            REMPLACER L'AVATAR FORMATEUR:
+                            Placez la photo dans le dossier assets/ et renommez-la 'instructor.jpg'
+                            Recommandations: Format JPG/PNG, taille 200x200px, format carré
+                        -->
+                        <img src="assets/instructor.jpg" alt="Photo de David Amoussou, Formateur Senior" class="testimonial-avatar">
+                        <h4 class="testimonial-name">David Amoussou</h4>
+                        <p class="testimonial-role">Formateur Senior Full-Stack</p>
+                        <p class="testimonial-text">
+                            "Chaque apprenant est unique. Notre approche pédagogique s'adapte aux besoins individuels 
+                            tout en maintenant l'excellence technique et la rigueur professionnelle."
+                        </p>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <!-- 
+                            REMPLACER L'AVATAR COORDINATEUR:
+                            Placez la photo dans le dossier assets/ et renommez-la 'coordinator.jpg'
+                            Recommandations: Format JPG/PNG, taille 200x200px, format carré
+                        -->
+                        <img src="assets/coordinator.jpg" alt="Photo de Sarah Diallo, Coordinatrice Projets" class="testimonial-avatar">
+                        <h4 class="testimonial-name">Sarah Diallo</h4>
+                        <p class="testimonial-role">Coordinatrice Projets & Stages</p>
+                        <p class="testimonial-text">
+                            "Notre réseau de partenaires entreprises nous permet d'offrir des opportunités concrètes 
+                            d'insertion professionnelle à nos diplômés. 85% trouvent un emploi dans les 6 mois."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta" role="region" aria-labelledby="cta-title">
+            <div class="container">
+                <h2 id="cta-title">Prêt à commencer votre transformation digitale ?</h2>
+                <p>
+                    Rejoignez notre communauté d'apprenants passionnés et lancez votre carrière dans le numérique. 
+                    Nos conseillers pédagogiques sont à votre disposition pour vous guider dans le choix de votre formation.
+                </p>
+                <a href="mailto:akondejunior18@gmail.com?subject=Demande%20d'informations%20Centre%20de%20Formation&body=Bonjour,%0A%0AJe%20souhaite%20obtenir%20des%20informations%20sur%20vos%20programmes%20de%20formation.%0A%0AMerci%20d'avance." 
+                   class="btn btn-primary">
+                    Contactez notre centre
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer (Identical to index.html) -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Centre de Formation Ange AKONDE</h3>
+                    <p>Former une nouvelle génération de créateurs numériques en Afrique.</p>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#about-me">À-propos</a>
+                <a href="index.html#projects">Projets</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="center.html">Centre de Formation</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100086331381088" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/ange_akonde?igsh=dWVhazhveHljeDM0" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/akonde_ange?t=6FYf0r7KvfpbMAXe31HfmQ&s=09" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X" class="social-link">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/junior-akonde-13514a347" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Centre de Formation Ange AKONDE. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+        });
+        
+        function initializePage() {
+            setupMobileMenu();
+            setupIntersectionObserver();
+            updateCopyrightYear();
+            setupHeaderScroll();
+            setupDropdownMenu();
+        }
+        
+        // Mobile Menu (Same as index.html)
+        function setupMobileMenu() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuLinks = document.querySelectorAll('.mobile-menu a');
+            let isMenuOpen = false;
+            
+            menuToggle.addEventListener('click', toggleMobileMenu);
+            
+            // Close menu when clicking on a link
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            
+            // Close with Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+            
+            function toggleMobileMenu() {
+                isMenuOpen = !isMenuOpen;
+                menuToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', isMenuOpen);
+                
+                // Focus trap
+                if (isMenuOpen) {
+                    const firstLink = mobileMenu.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }
+            }
+            
+            function closeMobileMenu() {
+                isMenuOpen = false;
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', false);
+            }
+        }
+        
+        // Intersection Observer for animations
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Staggered animation for cards
+                        if (entry.target.classList.contains('fade-in')) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 100);
+                        } else {
+                            entry.target.classList.add('visible');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe all animatable elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Dynamic copyright year
+        function updateCopyrightYear() {
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        }
+        
+        // Header scroll effect
+        function setupHeaderScroll() {
+            const header = document.querySelector('.header');
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+        
+        // Accessible dropdown menu
+        function setupDropdownMenu() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                let isOpen = false;
+                
+                // Keyboard management
+                toggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleDropdown();
+                    } else if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        openDropdown();
+                        const firstLink = menu.querySelector('a');
+                        if (firstLink) firstLink.focus();
+                    }
+                });
+                
+                // Close with Escape
+                dropdown.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && isOpen) {
+                        closeDropdown();
+                        toggle.focus();
+                    }
+                });
+                
+                function toggleDropdown() {
+                    isOpen = !isOpen;
+                    toggle.setAttribute('aria-expanded', isOpen);
+                }
+                
+                function openDropdown() {
+                    isOpen = true;
+                    toggle.setAttribute('aria-expanded', true);
+                }
+                
+                function closeDropdown() {
+                    isOpen = false;
+                    toggle.setAttribute('aria-expanded', false);
+                }
+            });
+        }
+        
+        // Performance: Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
