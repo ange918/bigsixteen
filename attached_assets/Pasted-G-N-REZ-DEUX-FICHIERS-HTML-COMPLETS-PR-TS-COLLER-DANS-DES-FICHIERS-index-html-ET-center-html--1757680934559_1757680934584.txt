@@ -1,0 +1,124 @@
+GÉNÈREZ DEUX FICHIERS HTML COMPLETS (PRÊTS À COLLER DANS DES FICHIERS) : index.html ET center.html.
+
+CONTRAINTES GÉNÉRALES
+- Chaque fichier doit être autonome : tout le CSS inclus dans une seule balise <style> dans l'en-tête, tout le JavaScript inclus dans une seule balise <script> en bas du body. Pas de build tools, pas de dépendances JS/CSS externes sauf Google Fonts (Playfair Display + Poppins).
+- Respecter la palette "Gecko" suivante :
+  :root {
+    --bg-dark: #052A3D;
+    --ocean: #117192;
+    --accent: #19D1E6;
+    --brown: #614943;
+    --muted: #B3CDD7;
+    --white: #EAF8FB;
+  }
+- Polices : Playfair Display (titres, élégants, majuscules), Poppins (texte courant, boutons).
+- Design : moderne, élégant, arrondi, responsive, performant, accessible (contrastes, roles ARIA, navigation clavier).
+- Inclure des commentaires clairs indiquant où remplacer les assets : vidéo hero (assets/hero.mp4), avatar, images projets, cv.pdf.
+- Tous les textes personnels fournis doivent être insérés (voir section Identité & contacts).
+- Tous les comportements JS demandés doivent être implémentés en vanilla JS (pas d’imports) :
+  - Smooth scroll pour ancres,
+  - IntersectionObserver pour reveal et stagger des cards,
+  - Typing effect optionnel sur le hero (mais fonctionnel),
+  - Menu burger mobile avec focus trap et close sur ESC,
+  - Lightbox accessible au clavier (navigation flèches + fermeture ESC),
+  - Carousel vidéos autoplay infini et pause on hover,
+  - Validation du formulaire contact et message de succès simulé,
+  - Copyright dynamique (année courante).
+- Fournir une structure sémantique (header, main, section, footer), id et ancres correctes, et un menu "À-propos" avec sous-menu (À-propos de moi #about-me et À-propos de mon centre → link vers center.html).
+- Comportement mobile : menu full-screen drawer accessible, images responsives, grid adaptatives.
+
+IDENTITÉ & CONTACTS (à injecter dans les deux pages où approprié)
+- Nom : Ange AKONDE
+- Titre : Developer FullStack
+- Email : akondejunior18@gmail.com
+- WhatsApp : +229 44711450
+- Téléphone : 0141483715
+- Réseaux :
+  - Facebook: https://www.facebook.com/profile.php?id=100086331381088
+  - Instagram: https://www.instagram.com/ange_akonde?igsh=dWVhazhveHljeDM0
+  - Twitter/X: https://x.com/akonde_ange?t=6FYf0r7KvfpbMAXe31HfmQ&s=09
+  - LinkedIn: https://www.linkedin.com/in/junior-akonde-13514a347
+
+LIVRABLES (détails par fichier)
+
+1) index.html (page principale)
+- Header (fixe) :
+  - Logo textuel / marqueur "AK" stylisé,
+  - Navigation : Accueil | À-propos ▼ | Expériences | Contact
+    - Sous-menu sous "À-propos" : "À-propos de moi" (ancre #about-me) et "À-propos de mon centre" (link center.html)
+  - Bouton Contact (ancre #contact).
+  - Comportement mobile : burger qui ouvre drawer plein écran vertical, focus trap et fermeture avec ESC ou en cliquant en dehors.
+- Hero :
+  - Vidéo de fond : assets/hero.mp4 (autoplay, muted, loop, playsinline).
+  - Avatar rond centré (placeholder comment pour remplacer).
+  - Texte : "Hey, I'm Ange AKONDE" puis "BigSixteen" dans un <span> avec couleur var(--accent) et effet pulse.
+  - Deux boutons : "En savoir plus" (scroll vers #about-me) et "Télécharger mon CV" (lien cv.pdf avec attribut download).
+  - Typing effect optionnel affichant des mots-clés (ex : "Developer FullStack", "UI/UX", "Open Source").
+- Section #about-me :
+  - Texte bio (paragraphe explicatif) + photo horizontale en bas.
+  - Animation reveal à l'entrée (IntersectionObserver).
+- Section "Pourquoi me choisir" :
+  - 3-4 items avec icônes SVG inline (non externes), texte explicatif. Fond --brown, icônes en --accent, layout alterné (left/right).
+- Section Expériences / Projets :
+  - Grid responsive de 10 cartes (placeholder images). Chaque card : image, titre, courte description, bouton "Voir" qui ouvre une lightbox (overlay) avec plus d'images/détails (supporter au moins 7 images dans la lightbox).
+  - Hover effect : transition douce et changement de fond utilisant --ocean/--accent.
+  - Staggered reveal quand on entre en viewport (IntersectionObserver).
+  - Lightbox accessible : focus trap, navigation clavier (← →), ESC pour fermer, boutons accessibles.
+- Section Témoignages :
+  - Slider/carousel horizontal infini contenant 4-6 vidéos miniatures (balises <video> autoplay muted loop). Carousel doit défiler en continu et se mettre en pause au survol (pause on hover).
+- Section Contact (#contact) :
+  - Formulaire (Nom, Email, Message) avec validation JS : champs obligatoires, email format, longueur message. Afficher erreurs accessibles et message succès simulé après "envoi".
+  - Coordonnées à droite (email, téléphone, WhatsApp) + liens réseaux sociaux (ouvrir dans une nouvelle fenêtre).
+- Footer :
+  - Fond --bg-dark, texte en --muted, liens sociaux, copyright dynamique (année).
+- Accessibilité :
+  - Tous les éléments interactifs doivent être accessibles au clavier et disposer d’attributs aria pertinents.
+  - Contrastes suffisants selon palette.
+
+2) center.html (page "À propos de mon centre de formation")
+- Header identique à index.html (même menu, logo).
+- Hero / Intro :
+  - Titre : "À propos de mon centre de formation"
+  - Texte : "Un centre moderne de formation dédié au développement web, au design digital et à l'innovation technologique. Notre mission est de former une nouvelle génération de créateurs numériques en Afrique."
+- Section Mission & Activités : liste courte sur fond --white (cartes ou bullets).
+- Section Programmes offerts : grid 4-6 cartes (chaque carte : titre, courte description, durée/format).
+- Section Témoignages dirigeants : 3 cartes (photo, nom/titre, texte). Responsive grid.
+- CTA final : bouton "En savoir plus / Contacter le centre" qui ouvre mailto:akondejunior18@gmail.com.
+- Footer identique à index.html.
+
+INSTRUCTIONS VISUELLES SPÉCIFIQUES
+- Titres : Playfair Display, taille imposante, lettres majuscules pour les headings clés.
+- Texte courant et boutons : Poppins.
+- Utiliser arrondis généreux (border-radius) pour boutons, cartes et avatars (style "soft").
+- Couleurs : utiliser systématiquement les variables CSS fournies.
+- Micro-interactions : hover transitions, pulse sur --accent pour BigSixteen, ombres douces, animations fluides non excessives.
+- Performance : lazy-loading pour images, use of <video> attributes, éviter heavy DOM operations.
+
+ASSETS ET REMPLACEMENTS
+- Indiquer par commentaires EXACTEMENT où remplacer ces fichiers :
+  - Vidéo hero : assets/hero.mp4
+  - Avatar principal : assets/avatar.jpg (ou .png)
+  - Images projets : assets/project1.jpg ... project10.jpg
+  - CV : cv.pdf
+- Expliquer brièvement dans les commentaires comment remplacer et les tailles/ratios recommandés.
+
+COMMENTAIRES DANS LE CODE
+- Ajouter des commentaires explicatifs dans le HTML/CSS/JS pour :
+  - Où remplacer les assets,
+  - Où ajuster la palette/typo,
+  - Comment étendre la liste de projets,
+  - Comment connecter le formulaire à un backend (si souhaité).
+
+ACCESSIBILITÉ & TESTS
+- Garantir que :
+  - Le menu burger et la lightbox supportent la navigation clavier,
+  - Les vidéos ont controls cachés pour a11y (mais autoplay muted loop for thumbnails),
+  - Les formulaires renvoient des messages d'erreur accessibles,
+  - Les contrastes sont testés par simple inspection (texte sur fond doit être lisible).
+
+LIVRABLE FINAL
+- Fournir le contenu final sous forme de deux fichiers indépendants (index.html et center.html). Chaque fichier doit être copiable-collable et fonctionner localement (avec les assets placés dans ./assets/).
+- Ne pas fournir d'assets binaires — seulement des placeholders et commentaires explicites.
+
+FIN
+- Générez maintenant les deux fichiers complets conformément aux spécifications ci-dessus.
