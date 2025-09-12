@@ -612,27 +612,110 @@
             color: var(--muted);
         }
         
-        /* Projects Section */
+        /* Projects Section - Style Modern Asymétrique */
         .projects {
             padding: var(--section-padding);
-            background: var(--white);
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .projects-info {
+            padding-right: 2rem;
+        }
+        
+        .projects-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .projects-description {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 400px;
         }
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
             gap: 1.5rem;
-            margin-top: 2rem;
+            height: 500px;
         }
         
         .project-card {
-            background: var(--white);
-            border-radius: var(--border-radius-large);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
+            border-radius: var(--border-radius-large);
+            cursor: pointer;
             transition: var(--transition);
+        }
+        
+        .project-card.featured {
+            grid-row: span 2;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(25, 209, 230, 0.0) 0%, rgba(25, 209, 230, 0.8) 100%);
             opacity: 0;
-            transform: translateY(30px);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-btn {
+            background: var(--white);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: translateY(20px);
+        }
+        
+        .project-card:hover .project-btn {
+            transform: translateY(0);
+        }
+        
+        .project-btn:hover {
+            background: var(--accent);
+            color: var(--white);
         }
         
         .project-card.visible {
@@ -1091,8 +1174,24 @@
                 font-size: 1.5rem;
             }
             
-            .projects-grid {
+            .projects-container {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .projects-info {
+                text-align: center;
+                padding-right: 0;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+                height: auto;
+            }
+            
+            .project-card.featured {
+                grid-row: span 1;
+                grid-column: span 2;
             }
             
             .contact-content {
@@ -1122,10 +1221,11 @@
             
             .projects-grid {
                 grid-template-columns: 1fr;
+                height: auto;
             }
             
-            .project-card {
-                min-width: auto;
+            .project-card.featured {
+                grid-column: span 1;
             }
             
             .testimonial-video {
@@ -1340,24 +1440,48 @@
         <!-- Projects Section -->
         <section id="projects" class="projects" role="region" aria-labelledby="projects-title">
             <div class="container">
-                <h2 id="projects-title" class="text-center">Mes Expériences & Projets</h2>
-                <div class="projects-grid">
-                    <!-- 
-                        REMPLACER LES IMAGES DE PROJETS:
-                        Placez vos images dans le dossier assets/ et renommez-les project1.jpg à project10.jpg
-                        Recommandations: Format JPG/PNG, taille 600x400px, format paysage
-                        Chaque projet peut avoir jusqu'à 7 images pour la lightbox (project1-1.jpg, project1-2.jpg, etc.)
-                    -->
-                    <article class="project-card">
-                        <img src="assets/project1.jpg" alt="Capture d'écran du projet E-commerce Platform" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">E-commerce Platform</h3>
-                            <p class="project-description">
-                                Plateforme e-commerce complète avec gestion des stocks, paiements en ligne et dashboard admin.
-                            </p>
-                            <button class="project-btn" data-project="1">Voir le projet</button>
+                <div class="projects-container">
+                    <!-- Info Section à gauche -->
+                    <div class="projects-info">
+                        <h2 id="projects-title" class="projects-title">Mes réalisations</h2>
+                        <p class="projects-description">
+                            Découvrez une sélection de mes projets les plus récents, allant des applications web complexes aux solutions mobiles innovantes. Chaque projet reflète mon engagement pour l'excellence technique et l'expérience utilisateur.
+                        </p>
+                    </div>
+                    
+                    <!-- Grille de projets asymétrique -->
+                    <div class="projects-grid">
+                        <!-- Projet principal (grand) -->
+                        <div class="project-card featured">
+                            <img src="assets/project1.jpg" alt="E-commerce Platform" class="project-image">
+                            <div class="project-overlay">
+                                <button class="project-btn" data-project="1">Voir le projet</button>
+                            </div>
                         </div>
-                    </article>
+                        
+                        <!-- Projets secondaires (petits) -->
+                        <div class="project-card">
+                            <img src="assets/project2.jpg" alt="Learning Management System" class="project-image">
+                            <div class="project-overlay">
+                                <button class="project-btn" data-project="2">Voir le projet</button>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <img src="assets/project3.jpg" alt="Mobile Banking App" class="project-image">
+                            <div class="project-overlay">
+                                <button class="project-btn" data-project="3">Voir le projet</button>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <img src="assets/project4.jpg" alt="Portfolio Corporate" class="project-image">
+                            <div class="project-overlay">
+                                <button class="project-btn" data-project="4">Voir le projet</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     
                     <article class="project-card">
                         <img src="assets/project2.jpg" alt="Capture d'écran du projet Learning Management System" class="project-image">
