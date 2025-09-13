@@ -54,15 +54,14 @@
             overflow-x: hidden;
         }
 
-        /* Hide scrollbar but keep functionality */
-        body::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
-        body {
+        /* Completely hide scrollbar */
+        html {
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        html::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
         
         .container {
@@ -279,15 +278,15 @@
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-10px);
+            left: 0;
             background: var(--white);
             border-radius: var(--border-radius);
             box-shadow: 0 10px 40px rgba(5, 42, 61, 0.15);
             opacity: 0;
             visibility: hidden;
-            transition: var(--transition);
-            min-width: 200px;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 220px;
             z-index: 1100;
             border: 1px solid rgba(179, 205, 215, 0.3);
             white-space: nowrap;
@@ -296,7 +295,7 @@
         .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0);
         }
         
         .dropdown-menu a {
