@@ -61,9 +61,6 @@
         }
 
         /* Fix for white space on left side */
-        * {
-            max-width: 100%;
-        }
         
         .header, .hero, .mission, .programs, .team-testimonials, .cta, .footer {
             width: 100%;
@@ -747,7 +744,7 @@
                 font-size: 1.4rem;
             }
             
-            .nav-list {
+            .nav {
                 display: none;
             }
             
@@ -885,17 +882,17 @@
                     <span></span>
                 </button>
             </div>
+            
+            <!-- Mobile Menu -->
+            <nav class="mobile-menu" role="navigation" aria-label="Navigation mobile">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#about-me">À-propos de moi</a>
+                <a href="center.html">À-propos de mon centre</a>
+                <a href="index.html#projects">Expériences</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="index.html#contact" class="btn btn-primary mobile-contact-btn">Contactez-moi</a>
+            </nav>
         </div>
-        
-        <!-- Mobile Menu -->
-        <nav class="mobile-menu" role="navigation" aria-label="Navigation mobile">
-            <a href="index.html">Accueil</a>
-            <a href="index.html#about-me">À-propos de moi</a>
-            <a href="center.html">À-propos de mon centre</a>
-            <a href="index.html#projects">Expériences</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="index.html#contact" class="btn btn-primary mobile-contact-btn">Contactez-moi</a>
-        </nav>
     </header>
     
     <!-- Main Content -->
@@ -1237,53 +1234,67 @@
             setupDropdownMenu();
         }
         
-        // Mobile Menu (Same as index.html)
+        // Mobile Menu Setup
         function setupMobileMenu() {
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const mobileMenu = document.querySelector('.mobile-menu');
-            const menuLinks = document.querySelectorAll('.mobile-menu a');
+            const body = document.body;
             let isMenuOpen = false;
             
-            menuToggle.addEventListener('click', toggleMobileMenu);
+            if (!mobileMenuToggle || !mobileMenu) return;
             
-            // Close menu when clicking on a link
-            menuLinks.forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
-            });
-            
-            // Close with Escape
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && isMenuOpen) {
-                    closeMobileMenu();
-                }
-            });
-            
-            // Close when clicking outside
-            document.addEventListener('click', (e) => {
-                if (isMenuOpen && !menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-                    closeMobileMenu();
-                }
-            });
-            
-            function toggleMobileMenu() {
+            mobileMenuToggle.addEventListener('click', function() {
                 isMenuOpen = !isMenuOpen;
-                menuToggle.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
-                menuToggle.setAttribute('aria-expanded', isMenuOpen);
                 
-                // Focus trap
+                mobileMenuToggle.classList.toggle('active', isMenuOpen);
+                mobileMenu.classList.toggle('active', isMenuOpen);
+                body.style.overflow = isMenuOpen ? 'hidden' : '';
+                
+                mobileMenuToggle.setAttribute('aria-expanded', isMenuOpen);
+                
+                // Focus management
                 if (isMenuOpen) {
                     const firstLink = mobileMenu.querySelector('a');
-                    if (firstLink) firstLink.focus();
+                    if (firstLink) {
+                        setTimeout(() => firstLink.focus(), 100);
+                    }
                 }
-            }
+            });
             
-            function closeMobileMenu() {
-                isMenuOpen = false;
-                menuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                menuToggle.setAttribute('aria-expanded', false);
-            }
+            // Close menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    body.style.overflow = '';
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+            
+            // Close menu with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    isMenuOpen = false;
+                    mobileMenuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    body.style.overflow = '';
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    mobileMenuToggle.focus();
+                }
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    isMenuOpen = false;
+                    mobileMenuToggle.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    body.style.overflow = '';
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
         }
         
         // Intersection Observer for animations
