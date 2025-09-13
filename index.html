@@ -709,10 +709,9 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
-            height: 500px;
+            padding: 2rem 0;
         }
         
         .project-card {
@@ -721,10 +720,30 @@
             border-radius: var(--border-radius-large);
             cursor: pointer;
             transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
+            aspect-ratio: 1 / 1;
+        }
+        
+        /* Différentes tailles de cartes */
+        .project-card.size-small {
+            grid-column: span 1;
+            max-width: 280px;
+        }
+        
+        .project-card.size-medium {
+            grid-column: span 1;
+            max-width: 320px;
+        }
+        
+        .project-card.size-large {
+            grid-column: span 2;
+            max-width: 400px;
         }
         
         .project-card.featured {
-            grid-row: span 2;
+            grid-column: span 2;
+            max-width: 450px;
         }
         
         .project-image {
@@ -831,20 +850,10 @@
             transform: translateY(-2px);
         }
         
-        /* Styles pour les nouvelles cartes de projets */
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--border-radius-large);
-            transition: var(--transition);
-            background: var(--white);
-            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
-            cursor: default;
-        }
         
         .project-card .project-image {
             width: 100%;
-            height: 100%;
+            height: 65%;
             object-fit: cover;
             transition: var(--transition);
             cursor: pointer;
@@ -1392,11 +1401,17 @@
             
             .projects-grid {
                 grid-template-columns: 1fr;
-                height: auto;
+                gap: 1rem;
             }
             
-            .project-card.featured {
+            .project-card,
+            .project-card.featured,
+            .project-card.size-large,
+            .project-card.size-medium,
+            .project-card.size-small {
                 grid-column: span 1;
+                max-width: 100%;
+                aspect-ratio: 1 / 1;
             }
             
             .testimonial-video {
@@ -1648,7 +1663,7 @@
                         </div>
                         
                         <!-- Learning Management System -->
-                        <div class="project-card" data-project="2">
+                        <div class="project-card size-large" data-project="2">
                             <img src="assets/project2.jpg" alt="Learning Management System" class="project-image gallery-trigger" data-gallery="2">
                             <div class="project-info">
                                 <h3 class="project-title">LMS Platform</h3>
@@ -1660,7 +1675,7 @@
                         </div>
                         
                         <!-- Mobile Banking App -->
-                        <div class="project-card" data-project="3">
+                        <div class="project-card size-medium" data-project="3">
                             <img src="assets/project3.jpg" alt="Mobile Banking App" class="project-image gallery-trigger" data-gallery="3">
                             <div class="project-info">
                                 <h3 class="project-title">Banking App</h3>
@@ -1672,7 +1687,7 @@
                         </div>
                         
                         <!-- Portfolio Corporate -->
-                        <div class="project-card" data-project="4">
+                        <div class="project-card size-small" data-project="4">
                             <img src="assets/project4.jpg" alt="Portfolio Corporate" class="project-image gallery-trigger" data-gallery="4">
                             <div class="project-info">
                                 <h3 class="project-title">Portfolio Corporate</h3>
@@ -1684,7 +1699,7 @@
                         </div>
                         
                         <!-- Task Management App -->
-                        <div class="project-card" data-project="5">
+                        <div class="project-card size-medium" data-project="5">
                             <img src="assets/project1.jpg" alt="Task Management App" class="project-image gallery-trigger" data-gallery="5">
                             <div class="project-info">
                                 <h3 class="project-title">Task Manager Pro</h3>
@@ -1696,7 +1711,7 @@
                         </div>
                         
                         <!-- Social Media Platform -->
-                        <div class="project-card" data-project="6">
+                        <div class="project-card size-large" data-project="6">
                             <img src="assets/project2.jpg" alt="Social Media Platform" class="project-image gallery-trigger" data-gallery="6">
                             <div class="project-info">
                                 <h3 class="project-title">Social Connect</h3>
@@ -1708,7 +1723,7 @@
                         </div>
                         
                         <!-- Real Estate Portal -->
-                        <div class="project-card" data-project="7">
+                        <div class="project-card size-small" data-project="7">
                             <img src="assets/project3.jpg" alt="Real Estate Portal" class="project-image gallery-trigger" data-gallery="7">
                             <div class="project-info">
                                 <h3 class="project-title">PropertyHub</h3>
@@ -1720,7 +1735,7 @@
                         </div>
                         
                         <!-- Healthcare Management -->
-                        <div class="project-card" data-project="8">
+                        <div class="project-card size-medium" data-project="8">
                             <img src="assets/project4.jpg" alt="Healthcare Management" class="project-image gallery-trigger" data-gallery="8">
                             <div class="project-info">
                                 <h3 class="project-title">MediCare Plus</h3>
@@ -1732,7 +1747,7 @@
                         </div>
                         
                         <!-- Food Delivery App -->
-                        <div class="project-card" data-project="9">
+                        <div class="project-card size-small" data-project="9">
                             <img src="assets/project1.jpg" alt="Food Delivery App" class="project-image gallery-trigger" data-gallery="9">
                             <div class="project-info">
                                 <h3 class="project-title">QuickEats</h3>
@@ -1744,7 +1759,7 @@
                         </div>
                         
                         <!-- CRM Dashboard -->
-                        <div class="project-card" data-project="10">
+                        <div class="project-card size-large" data-project="10">
                             <img src="assets/project2.jpg" alt="CRM Dashboard" class="project-image gallery-trigger" data-gallery="10">
                             <div class="project-info">
                                 <h3 class="project-title">SalesMaster CRM</h3>
