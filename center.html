@@ -254,67 +254,6 @@
             width: 100%;
         }
         
-        /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .dropdown-toggle::after {
-            content: '▼';
-            font-size: 0.8rem;
-            transition: var(--transition);
-        }
-        
-        .dropdown:hover .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 40px rgba(5, 42, 61, 0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            min-width: 220px;
-            z-index: 1100;
-            border: 1px solid rgba(179, 205, 215, 0.3);
-            white-space: nowrap;
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-menu a {
-            display: block;
-            padding: 1rem 1.5rem;
-            color: var(--bg-dark);
-            text-decoration: none;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(179, 205, 215, 0.2);
-        }
-        
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-menu a:hover {
-            background: var(--accent);
-            color: var(--white);
-        }
         
         /* Mobile Menu */
         .mobile-menu-toggle {
@@ -868,14 +807,11 @@
                         <li class="nav-item">
                             <a href="index.html" class="nav-link">Accueil</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                                À-propos
-                            </a>
-                            <div class="dropdown-menu" role="menu">
-                                <a href="index.html#about-me" role="menuitem">À-propos de moi</a>
-                                <a href="center.html" role="menuitem">À-propos de mon centre</a>
-                            </div>
+                        <li class="nav-item">
+                            <a href="index.html#about-me" class="nav-link">À-propos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">À-propos de mon centre</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.html#projects" class="nav-link">Expériences</a>
@@ -1243,7 +1179,6 @@
             setupIntersectionObserver();
             updateCopyrightYear();
             setupHeaderScroll();
-            setupDropdownMenu();
         }
         
         // Mobile Menu Setup
@@ -1359,52 +1294,6 @@
             });
         }
         
-        // Accessible dropdown menu
-        function setupDropdownMenu() {
-            const dropdowns = document.querySelectorAll('.dropdown');
-            
-            dropdowns.forEach(dropdown => {
-                const toggle = dropdown.querySelector('.dropdown-toggle');
-                const menu = dropdown.querySelector('.dropdown-menu');
-                let isOpen = false;
-                
-                // Keyboard management
-                toggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        toggleDropdown();
-                    } else if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        openDropdown();
-                        const firstLink = menu.querySelector('a');
-                        if (firstLink) firstLink.focus();
-                    }
-                });
-                
-                // Close with Escape
-                dropdown.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && isOpen) {
-                        closeDropdown();
-                        toggle.focus();
-                    }
-                });
-                
-                function toggleDropdown() {
-                    isOpen = !isOpen;
-                    toggle.setAttribute('aria-expanded', isOpen);
-                }
-                
-                function openDropdown() {
-                    isOpen = true;
-                    toggle.setAttribute('aria-expanded', true);
-                }
-                
-                function closeDropdown() {
-                    isOpen = false;
-                    toggle.setAttribute('aria-expanded', false);
-                }
-            });
-        }
         
         // Performance: Lazy loading for images
         if ('IntersectionObserver' in window) {
