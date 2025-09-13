@@ -607,14 +607,19 @@
         }
         
         .why-item:nth-child(even) {
-            background: var(--brown);
+            background: linear-gradient(rgba(125, 90, 72, 0.85), rgba(125, 90, 72, 0.85)), url('assets/project2.jpg') center/cover;
             color: var(--white);
             flex-direction: row-reverse;
         }
         
         .why-item:nth-child(odd) {
-            background: rgba(179, 205, 215, 0.1);
+            background: linear-gradient(rgba(179, 205, 215, 0.85), rgba(179, 205, 215, 0.85)), url('assets/about-bg.jpg') center/cover;
             color: var(--bg-dark);
+        }
+        
+        .why-item:nth-child(3) {
+            background: linear-gradient(rgba(125, 90, 72, 0.85), rgba(125, 90, 72, 0.85)), url('assets/project4.jpg') center/cover;
+            color: var(--white);
         }
         
         .why-icon {
@@ -1677,6 +1682,78 @@
                                 Voir le site <i class='bx bx-link-external'></i>
                             </a>
                         </div>
+                        
+                        <!-- Task Management App -->
+                        <div class="project-card" data-project="5">
+                            <img src="assets/project1.jpg" alt="Task Management App" class="project-image gallery-trigger" data-gallery="5">
+                            <div class="project-info">
+                                <h3 class="project-title">Task Manager Pro</h3>
+                                <p class="project-description">Application de gestion de tâches collaboratives avec tableaux Kanban</p>
+                            </div>
+                            <a href="https://example-taskmanager.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="5">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Social Media Platform -->
+                        <div class="project-card" data-project="6">
+                            <img src="assets/project2.jpg" alt="Social Media Platform" class="project-image gallery-trigger" data-gallery="6">
+                            <div class="project-info">
+                                <h3 class="project-title">Social Connect</h3>
+                                <p class="project-description">Réseau social professionnel avec messagerie instantanée</p>
+                            </div>
+                            <a href="https://example-social.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="6">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Real Estate Portal -->
+                        <div class="project-card" data-project="7">
+                            <img src="assets/project3.jpg" alt="Real Estate Portal" class="project-image gallery-trigger" data-gallery="7">
+                            <div class="project-info">
+                                <h3 class="project-title">PropertyHub</h3>
+                                <p class="project-description">Portail immobilier avec recherche avancée et visites virtuelles</p>
+                            </div>
+                            <a href="https://example-realestate.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="7">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Healthcare Management -->
+                        <div class="project-card" data-project="8">
+                            <img src="assets/project4.jpg" alt="Healthcare Management" class="project-image gallery-trigger" data-gallery="8">
+                            <div class="project-info">
+                                <h3 class="project-title">MediCare Plus</h3>
+                                <p class="project-description">Système de gestion hospitalière avec dossiers patients digitalisés</p>
+                            </div>
+                            <a href="https://example-healthcare.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="8">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Food Delivery App -->
+                        <div class="project-card" data-project="9">
+                            <img src="assets/project1.jpg" alt="Food Delivery App" class="project-image gallery-trigger" data-gallery="9">
+                            <div class="project-info">
+                                <h3 class="project-title">QuickEats</h3>
+                                <p class="project-description">Application de livraison de repas avec tracking en temps réel</p>
+                            </div>
+                            <a href="https://example-delivery.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="9">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
+                        
+                        <!-- CRM Dashboard -->
+                        <div class="project-card" data-project="10">
+                            <img src="assets/project2.jpg" alt="CRM Dashboard" class="project-image gallery-trigger" data-gallery="10">
+                            <div class="project-info">
+                                <h3 class="project-title">SalesMaster CRM</h3>
+                                <p class="project-description">Dashboard CRM complet avec analytics et automatisation marketing</p>
+                            </div>
+                            <a href="https://example-crm.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="10">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2046,6 +2123,30 @@
                 4: {
                     title: "Portfolio Corporate",
                     images: ['assets/project4.jpg', 'assets/project3.jpg', 'assets/project2.jpg', 'assets/project1.jpg']
+                },
+                5: {
+                    title: "Task Management App",
+                    images: ['assets/project1.jpg', 'assets/project4.jpg', 'assets/project2.jpg']
+                },
+                6: {
+                    title: "Social Media Platform",
+                    images: ['assets/project2.jpg', 'assets/project3.jpg', 'assets/project1.jpg', 'assets/project4.jpg']
+                },
+                7: {
+                    title: "Real Estate Portal",
+                    images: ['assets/project3.jpg', 'assets/project1.jpg', 'assets/project4.jpg']
+                },
+                8: {
+                    title: "Healthcare Management",
+                    images: ['assets/project4.jpg', 'assets/project2.jpg', 'assets/project3.jpg', 'assets/project1.jpg']
+                },
+                9: {
+                    title: "Food Delivery App",
+                    images: ['assets/project1.jpg', 'assets/project3.jpg', 'assets/project2.jpg']
+                },
+                10: {
+                    title: "CRM Dashboard",
+                    images: ['assets/project2.jpg', 'assets/project4.jpg', 'assets/project1.jpg', 'assets/project3.jpg']
                 }
             };
             
