@@ -826,6 +826,101 @@
             transform: translateY(-2px);
         }
         
+        /* Styles pour les nouvelles cartes de projets */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-large);
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
+            cursor: default;
+        }
+        
+        .project-card .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        /* Informations du projet en overlay */
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(5, 42, 61, 0.95));
+            color: var(--white);
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-info {
+            transform: translateY(0);
+        }
+        
+        .project-info .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .project-info .project-description {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+            opacity: 1;
+        }
+        
+        /* Bouton positionné dans l'angle supérieur droit */
+        .project-link-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(25, 209, 230, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            transform: translateY(-100%);
+            opacity: 0;
+            box-shadow: 0 4px 15px rgba(25, 209, 230, 0.3);
+            z-index: 10;
+        }
+        
+        .project-card:hover .project-link-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .project-link-btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(25, 209, 230, 0.4);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .project-link-btn i {
+            font-size: 1rem;
+        }
+        
         /* Lightbox */
         .lightbox {
             position: fixed;
@@ -1529,142 +1624,60 @@
                     <div class="projects-info">
                         <h2 id="projects-title" class="projects-title">Mes réalisations</h2>
                         <p class="projects-description">
-                            Découvrez une sélection de mes projets les plus récents, allant des applications web complexes aux solutions mobiles innovantes. Chaque projet reflète mon engagement pour l'excellence technique et l'expérience utilisateur.
+                            Découvrez une sélection de mes projets les plus récents, alliant innovation technique et expérience utilisateur exceptionnelle. Chaque projet démontre ma maîtrise des technologies modernes.
                         </p>
                     </div>
                     
-                    <!-- Grille de projets asymétrique -->
+                    <!-- Grille de projets -->
                     <div class="projects-grid">
-                        <!-- Projet principal (grand) -->
-                        <div class="project-card featured">
-                            <img src="assets/project1.jpg" alt="E-commerce Platform" class="project-image">
-                            <div class="project-overlay">
-                                <button class="project-btn" data-project="1">Voir le projet</button>
+                        <!-- E-commerce Platform -->
+                        <div class="project-card featured" data-project="1">
+                            <img src="assets/project1.jpg" alt="E-commerce Platform" class="project-image gallery-trigger" data-gallery="1">
+                            <div class="project-info">
+                                <h3 class="project-title">E-commerce Platform</h3>
+                                <p class="project-description">Plateforme de commerce électronique complète avec paiement intégré</p>
                             </div>
+                            <a href="https://example-ecommerce.com" target="_blank" class="project-link-btn" data-project="1">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
                         </div>
                         
-                        <!-- Projets secondaires (petits) -->
-                        <div class="project-card">
-                            <img src="assets/project2.jpg" alt="Learning Management System" class="project-image">
-                            <div class="project-overlay">
-                                <button class="project-btn" data-project="2">Voir le projet</button>
+                        <!-- Learning Management System -->
+                        <div class="project-card" data-project="2">
+                            <img src="assets/project2.jpg" alt="Learning Management System" class="project-image gallery-trigger" data-gallery="2">
+                            <div class="project-info">
+                                <h3 class="project-title">LMS Platform</h3>
+                                <p class="project-description">Système de gestion d'apprentissage avec cours interactifs</p>
                             </div>
+                            <a href="https://example-lms.com" target="_blank" class="project-link-btn" data-project="2">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
                         </div>
                         
-                        <div class="project-card">
-                            <img src="assets/project3.jpg" alt="Mobile Banking App" class="project-image">
-                            <div class="project-overlay">
-                                <button class="project-btn" data-project="3">Voir le projet</button>
+                        <!-- Mobile Banking App -->
+                        <div class="project-card" data-project="3">
+                            <img src="assets/project3.jpg" alt="Mobile Banking App" class="project-image gallery-trigger" data-gallery="3">
+                            <div class="project-info">
+                                <h3 class="project-title">Banking App</h3>
+                                <p class="project-description">Application bancaire mobile avec sécurité renforcée</p>
                             </div>
+                            <a href="https://example-bank.com" target="_blank" class="project-link-btn" data-project="3">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
                         </div>
                         
-                        <div class="project-card">
-                            <img src="assets/project4.jpg" alt="Portfolio Corporate" class="project-image">
-                            <div class="project-overlay">
-                                <button class="project-btn" data-project="4">Voir le projet</button>
+                        <!-- Portfolio Corporate -->
+                        <div class="project-card" data-project="4">
+                            <img src="assets/project4.jpg" alt="Portfolio Corporate" class="project-image gallery-trigger" data-gallery="4">
+                            <div class="project-info">
+                                <h3 class="project-title">Portfolio Corporate</h3>
+                                <p class="project-description">Site vitrine corporate avec design premium</p>
                             </div>
+                            <a href="https://example-corporate.com" target="_blank" class="project-link-btn" data-project="4">
+                                Voir le site <i class='bx bx-link-external'></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-                    
-                    <article class="project-card">
-                        <img src="assets/project2.jpg" alt="Capture d'écran du projet Learning Management System" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Learning Management System</h3>
-                            <p class="project-description">
-                                Système de gestion d'apprentissage avec cours vidéo, quiz interactifs et suivi de progression.
-                            </p>
-                            <button class="project-btn" data-project="2">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project3.jpg" alt="Capture d'écran du projet Portfolio Corporate" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Portfolio Corporate</h3>
-                            <p class="project-description">
-                                Site vitrine moderne pour une entreprise de consulting avec animations et design premium.
-                            </p>
-                            <button class="project-btn" data-project="3">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project4.jpg" alt="Capture d'écran du projet Mobile Banking App" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Mobile Banking App</h3>
-                            <p class="project-description">
-                                Application mobile de banque en ligne avec authentification biométrique et transactions sécurisées.
-                            </p>
-                            <button class="project-btn" data-project="4">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project5.jpg" alt="Capture d'écran du projet Real Estate Portal" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Real Estate Portal</h3>
-                            <p class="project-description">
-                                Portail immobilier avec recherche avancée, visites virtuelles et gestion des annonces.
-                            </p>
-                            <button class="project-btn" data-project="5">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project6.jpg" alt="Capture d'écran du projet Social Media Dashboard" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Social Media Dashboard</h3>
-                            <p class="project-description">
-                                Dashboard de gestion des réseaux sociaux avec analytics en temps réel et programmation de posts.
-                            </p>
-                            <button class="project-btn" data-project="6">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project7.jpg" alt="Capture d'écran du projet Event Management System" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Event Management System</h3>
-                            <p class="project-description">
-                                Système de gestion d'événements avec billetterie en ligne et gestion des participants.
-                            </p>
-                            <button class="project-btn" data-project="7">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project8.jpg" alt="Capture d'écran du projet Healthcare Management" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Healthcare Management</h3>
-                            <p class="project-description">
-                                Application de gestion médicale avec dossiers patients et système de rendez-vous.
-                            </p>
-                            <button class="project-btn" data-project="8">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project9.jpg" alt="Capture d'écran du projet Food Delivery App" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">Food Delivery App</h3>
-                            <p class="project-description">
-                                Application de livraison de nourriture avec tracking en temps réel et paiement intégré.
-                            </p>
-                            <button class="project-btn" data-project="9">Voir le projet</button>
-                        </div>
-                    </article>
-                    
-                    <article class="project-card">
-                        <img src="assets/project10.jpg" alt="Capture d'écran du projet CRM System" class="project-image">
-                        <div class="project-content">
-                            <h3 class="project-title">CRM System</h3>
-                            <p class="project-description">
-                                Système CRM complet avec gestion des leads, pipeline de ventes et reporting avancé.
-                            </p>
-                            <button class="project-btn" data-project="10">Voir le projet</button>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
