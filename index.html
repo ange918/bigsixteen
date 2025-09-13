@@ -75,6 +75,17 @@
             width: 100%;
             box-sizing: border-box;
         }
+
+        /* Fix for white space on left side */
+        * {
+            max-width: 100%;
+        }
+        
+        .header, .hero, .about, .projects, .contact, .footer {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
         
         /* Typography */
         h1, h2, h3, h4, h5, h6 {
@@ -377,6 +388,23 @@
         .mobile-menu a:hover {
             color: var(--accent);
             transform: scale(1.1);
+        }
+
+        .mobile-contact-btn {
+            margin-top: 2rem !important;
+            padding: 16px 32px !important;
+            border-radius: var(--border-radius) !important;
+            background: linear-gradient(135deg, var(--accent), var(--ocean)) !important;
+            color: var(--white) !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+        }
+
+        .mobile-contact-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 30px rgba(25, 209, 230, 0.3) !important;
+            color: var(--white) !important;
         }
         
         
@@ -1298,7 +1326,11 @@
         @media (max-width: 480px) {
             :root {
                 --section-padding: 80px 0;
-                --container-padding: 0 15px;
+                --container-padding: 0 10px;
+            }
+            
+            .container {
+                padding: 0 10px;
             }
             
             .projects-grid {
@@ -1405,8 +1437,10 @@
             <nav class="mobile-menu" role="navigation" aria-label="Navigation mobile">
                 <a href="#">Accueil</a>
                 <a href="#about-me">À-propos de moi</a>
+                <a href="center.html">À-propos de mon centre</a>
                 <a href="#projects">Expériences</a>
                 <a href="#contact">Contact</a>
+                <a href="#contact" class="btn btn-primary mobile-contact-btn">Contactez-moi</a>
             </nav>
         </div>
         
