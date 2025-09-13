@@ -709,7 +709,8 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-flow: dense;
             gap: 1.5rem;
             padding: 2rem 0;
         }
@@ -728,22 +729,19 @@
         /* Différentes tailles de cartes */
         .project-card.size-small {
             grid-column: span 1;
-            max-width: 280px;
         }
         
         .project-card.size-medium {
-            grid-column: span 1;
-            max-width: 320px;
+            grid-column: span 2;
         }
         
         .project-card.size-large {
-            grid-column: span 2;
-            max-width: 400px;
+            grid-column: span 3;
         }
         
         .project-card.featured {
             grid-column: span 2;
-            max-width: 450px;
+            grid-row: span 2;
         }
         
         .project-image {
@@ -775,27 +773,6 @@
             opacity: 1;
         }
         
-        .project-btn {
-            background: var(--white);
-            color: var(--bg-dark);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius);
-            font-family: var(--font-body);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            transform: translateY(20px);
-        }
-        
-        .project-card:hover .project-btn {
-            transform: translateY(0);
-        }
-        
-        .project-btn:hover {
-            background: var(--accent);
-            color: var(--white);
-        }
         
         .project-card.visible {
             opacity: 1;
@@ -807,16 +784,6 @@
             box-shadow: 0 20px 60px rgba(17, 113, 146, 0.2);
         }
         
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
         
         .project-content {
             padding: 1.2rem;
@@ -851,17 +818,6 @@
         }
         
         
-        .project-card .project-image {
-            width: 100%;
-            height: 65%;
-            object-fit: cover;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
         
         /* Informations du projet en overlay */
         .project-info {
