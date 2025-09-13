@@ -1637,7 +1637,7 @@
                                 <h3 class="project-title">E-commerce Platform</h3>
                                 <p class="project-description">Plateforme de commerce électronique complète avec paiement intégré</p>
                             </div>
-                            <a href="https://example-ecommerce.com" target="_blank" class="project-link-btn" data-project="1">
+                            <a href="https://example-ecommerce.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="1">
                                 Voir le site <i class='bx bx-link-external'></i>
                             </a>
                         </div>
@@ -1649,7 +1649,7 @@
                                 <h3 class="project-title">LMS Platform</h3>
                                 <p class="project-description">Système de gestion d'apprentissage avec cours interactifs</p>
                             </div>
-                            <a href="https://example-lms.com" target="_blank" class="project-link-btn" data-project="2">
+                            <a href="https://example-lms.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="2">
                                 Voir le site <i class='bx bx-link-external'></i>
                             </a>
                         </div>
@@ -1661,7 +1661,7 @@
                                 <h3 class="project-title">Banking App</h3>
                                 <p class="project-description">Application bancaire mobile avec sécurité renforcée</p>
                             </div>
-                            <a href="https://example-bank.com" target="_blank" class="project-link-btn" data-project="3">
+                            <a href="https://example-bank.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="3">
                                 Voir le site <i class='bx bx-link-external'></i>
                             </a>
                         </div>
@@ -1673,7 +1673,7 @@
                                 <h3 class="project-title">Portfolio Corporate</h3>
                                 <p class="project-description">Site vitrine corporate avec design premium</p>
                             </div>
-                            <a href="https://example-corporate.com" target="_blank" class="project-link-btn" data-project="4">
+                            <a href="https://example-corporate.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="4">
                                 Voir le site <i class='bx bx-link-external'></i>
                             </a>
                         </div>
@@ -2029,54 +2029,32 @@
             const lightboxPrev = document.querySelector('.lightbox-prev');
             const lightboxNext = document.querySelector('.lightbox-next');
             
-            // Données des projets avec images multiples
+            // Données des projets avec images multiples (utilise les images disponibles)
             const projectsData = {
                 1: {
                     title: "E-commerce Platform",
-                    images: ['assets/project1-1.jpg', 'assets/project1-2.jpg', 'assets/project1-3.jpg', 'assets/project1-4.jpg']
+                    images: ['assets/project1.jpg', 'assets/project2.jpg', 'assets/project3.jpg', 'assets/project4.jpg']
                 },
                 2: {
                     title: "Learning Management System", 
-                    images: ['assets/project2-1.jpg', 'assets/project2-2.jpg', 'assets/project2-3.jpg']
+                    images: ['assets/project2.jpg', 'assets/project1.jpg', 'assets/project3.jpg']
                 },
                 3: {
-                    title: "Portfolio Corporate",
-                    images: ['assets/project3-1.jpg', 'assets/project3-2.jpg', 'assets/project3-3.jpg', 'assets/project3-4.jpg', 'assets/project3-5.jpg']
+                    title: "Banking App",
+                    images: ['assets/project3.jpg', 'assets/project4.jpg', 'assets/project1.jpg', 'assets/project2.jpg']
                 },
                 4: {
-                    title: "Mobile Banking App",
-                    images: ['assets/project4-1.jpg', 'assets/project4-2.jpg', 'assets/project4-3.jpg', 'assets/project4-4.jpg', 'assets/project4-5.jpg', 'assets/project4-6.jpg']
-                },
-                5: {
-                    title: "Real Estate Portal",
-                    images: ['assets/project5-1.jpg', 'assets/project5-2.jpg', 'assets/project5-3.jpg']
-                },
-                6: {
-                    title: "Social Media Dashboard",
-                    images: ['assets/project6-1.jpg', 'assets/project6-2.jpg', 'assets/project6-3.jpg', 'assets/project6-4.jpg']
-                },
-                7: {
-                    title: "Event Management System",
-                    images: ['assets/project7-1.jpg', 'assets/project7-2.jpg', 'assets/project7-3.jpg', 'assets/project7-4.jpg', 'assets/project7-5.jpg']
-                },
-                8: {
-                    title: "Healthcare Management",
-                    images: ['assets/project8-1.jpg', 'assets/project8-2.jpg', 'assets/project8-3.jpg']
-                },
-                9: {
-                    title: "Food Delivery App",
-                    images: ['assets/project9-1.jpg', 'assets/project9-2.jpg', 'assets/project9-3.jpg', 'assets/project9-4.jpg', 'assets/project9-5.jpg', 'assets/project9-6.jpg', 'assets/project9-7.jpg']
-                },
-                10: {
-                    title: "CRM System",
-                    images: ['assets/project10-1.jpg', 'assets/project10-2.jpg', 'assets/project10-3.jpg', 'assets/project10-4.jpg']
+                    title: "Portfolio Corporate",
+                    images: ['assets/project4.jpg', 'assets/project3.jpg', 'assets/project2.jpg', 'assets/project1.jpg']
                 }
             };
             
-            // Ouvrir la lightbox
-            document.querySelectorAll('.project-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const projectId = e.target.getAttribute('data-project');
+            // Ouvrir la lightbox au clic sur les images
+            document.querySelectorAll('.gallery-trigger').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const projectId = e.target.getAttribute('data-gallery');
                     openLightbox(projectId, projectsData);
                 });
             });
