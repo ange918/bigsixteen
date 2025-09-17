@@ -883,44 +883,75 @@
             opacity: 1;
         }
         
-        /* Bouton positionné dans l'angle supérieur droit */
-        .project-link-btn {
+        /* Conteneur pour les boutons de projet */
+        .project-buttons {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(25, 209, 230, 0.9);
-            backdrop-filter: blur(10px);
-            color: var(--white);
-            padding: 0.8rem 1.2rem;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-            transform: translateY(-100%);
-            opacity: 0;
-            box-shadow: 0 4px 15px rgba(25, 209, 230, 0.3);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             z-index: 10;
+            pointer-events: none;
         }
         
-        .project-card:hover .project-link-btn {
-            transform: translateY(0);
+        /* Styles des boutons de projet */
+        .project-btn {
+            position: absolute;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(179, 205, 215, 0.3);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(25, 209, 230, 0.2);
+            pointer-events: auto;
+        }
+        
+        /* Bouton "Visitez le site" en haut à droite */
+        .project-visit-btn {
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        /* Bouton "Galerie" en bas à gauche */
+        .project-gallery-btn {
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(25, 209, 230, 0.95);
+            color: var(--white);
+        }
+        
+        /* Animation au hover de la carte */
+        .project-card:hover .project-btn {
+            transform: scale(1);
             opacity: 1;
         }
         
-        .project-link-btn:hover {
+        /* Hover des boutons individuels */
+        .project-visit-btn:hover {
             background: var(--accent);
-            transform: translateY(-3px);
+            transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(25, 209, 230, 0.4);
             color: var(--white);
             text-decoration: none;
         }
         
-        .project-link-btn i {
-            font-size: 1rem;
+        .project-gallery-btn:hover {
+            background: var(--ocean);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(17, 113, 146, 0.4);
         }
         
         /* Lightbox */
@@ -1843,124 +1874,106 @@
                     
                     <!-- Grille de projets -->
                     <div class="projects-grid">
-                        <!-- E-commerce Platform -->
+                        <!-- Portfolio de Ore Gauthier -->
                         <div class="project-card featured" data-project="1">
-                            <img src="assets/project1.jpg" alt="E-commerce Platform" class="project-image gallery-trigger" data-gallery="1">
+                            <img src="assets/project1.jpg" alt="Portfolio de Ore Gauthier" class="project-image gallery-trigger" data-gallery="1">
                             <div class="project-info">
-                                <h3 class="project-title">E-commerce Platform</h3>
-                                <p class="project-description">Plateforme de commerce électronique complète avec paiement intégré</p>
+                                <h3 class="project-title">Portfolio de Ore Gauthier</h3>
+                                <p class="project-description">Portfolio personnel moderne avec design élégant et interactif</p>
                             </div>
-                            <a href="https://example-ecommerce.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="1">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
+                            <div class="project-buttons">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="1">
+                                    <i class='bx bx-link-external'></i> Visitez le site
+                                </a>
+                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="1">
+                                    <i class='bx bx-images'></i> Galerie
+                                </button>
+                            </div>
                         </div>
                         
-                        <!-- Learning Management System -->
+                        <!-- Site de MODELS ACADEMY MANAGEMENT -->
                         <div class="project-card size-large" data-project="2">
-                            <img src="assets/project2.jpg" alt="Learning Management System" class="project-image gallery-trigger" data-gallery="2">
+                            <img src="assets/project2.jpg" alt="Site de MODELS ACADEMY MANAGEMENT" class="project-image gallery-trigger" data-gallery="2">
                             <div class="project-info">
-                                <h3 class="project-title">LMS Platform</h3>
-                                <p class="project-description">Système de gestion d'apprentissage avec cours interactifs</p>
+                                <h3 class="project-title">MODELS ACADEMY MANAGEMENT</h3>
+                                <p class="project-description">Plateforme de gestion pour agence de mannequins et talents</p>
                             </div>
-                            <a href="https://example-lms.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="2">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
+                            <div class="project-buttons">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="2">
+                                    <i class='bx bx-link-external'></i> Visitez le site
+                                </a>
+                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="2">
+                                    <i class='bx bx-images'></i> Galerie
+                                </button>
+                            </div>
                         </div>
                         
-                        <!-- Mobile Banking App -->
+                        <!-- Site de code capital -->
                         <div class="project-card size-medium" data-project="3">
-                            <img src="assets/project3.jpg" alt="Mobile Banking App" class="project-image gallery-trigger" data-gallery="3">
+                            <img src="assets/project3.jpg" alt="Site de code capital" class="project-image gallery-trigger" data-gallery="3">
                             <div class="project-info">
-                                <h3 class="project-title">Banking App</h3>
-                                <p class="project-description">Application bancaire mobile avec sécurité renforcée</p>
+                                <h3 class="project-title">Code Capital</h3>
+                                <p class="project-description">Plateforme d'investissement et de financement technologique</p>
                             </div>
-                            <a href="https://example-bank.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="3">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
+                            <div class="project-buttons">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="3">
+                                    <i class='bx bx-link-external'></i> Visitez le site
+                                </a>
+                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="3">
+                                    <i class='bx bx-images'></i> Galerie
+                                </button>
+                            </div>
                         </div>
                         
-                        <!-- Portfolio Corporate -->
+                        <!-- Portfolio de Merveille Susuni -->
                         <div class="project-card size-small" data-project="4">
-                            <img src="assets/project4.jpg" alt="Portfolio Corporate" class="project-image gallery-trigger" data-gallery="4">
+                            <img src="assets/project4.jpg" alt="Portfolio de Merveille Susuni" class="project-image gallery-trigger" data-gallery="4">
                             <div class="project-info">
-                                <h3 class="project-title">Portfolio Corporate</h3>
-                                <p class="project-description">Site vitrine corporate avec design premium</p>
+                                <h3 class="project-title">Portfolio de Merveille Susuni</h3>
+                                <p class="project-description">Portfolio créatif avec animations et design artistique</p>
                             </div>
-                            <a href="https://example-corporate.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="4">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
+                            <div class="project-buttons">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="4">
+                                    <i class='bx bx-link-external'></i> Visitez le site
+                                </a>
+                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="4">
+                                    <i class='bx bx-images'></i> Galerie
+                                </button>
+                            </div>
                         </div>
                         
-                        <!-- Task Management App -->
+                        <!-- Portfolio du président DJANGOUN -->
                         <div class="project-card size-medium" data-project="5">
-                            <img src="assets/project1.jpg" alt="Task Management App" class="project-image gallery-trigger" data-gallery="5">
+                            <img src="assets/project1.jpg" alt="Portfolio du président DJANGOUN" class="project-image gallery-trigger" data-gallery="5">
                             <div class="project-info">
-                                <h3 class="project-title">Task Manager Pro</h3>
-                                <p class="project-description">Application de gestion de tâches collaboratives avec tableaux Kanban</p>
+                                <h3 class="project-title">Portfolio du président DJANGOUN</h3>
+                                <p class="project-description">Site institutionnel présidentiel avec design professionnel</p>
                             </div>
-                            <a href="https://example-taskmanager.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="5">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
+                            <div class="project-buttons">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="5">
+                                    <i class='bx bx-link-external'></i> Visitez le site
+                                </a>
+                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="5">
+                                    <i class='bx bx-images'></i> Galerie
+                                </button>
+                            </div>
                         </div>
                         
-                        <!-- Social Media Platform -->
+                        <!-- Site de FuturCraft Institut -->
                         <div class="project-card size-large" data-project="6">
-                            <img src="assets/project2.jpg" alt="Social Media Platform" class="project-image gallery-trigger" data-gallery="6">
+                            <img src="assets/project2.jpg" alt="Site de FuturCraft Institut" class="project-image gallery-trigger" data-gallery="6">
                             <div class="project-info">
-                                <h3 class="project-title">Social Connect</h3>
-                                <p class="project-description">Réseau social professionnel avec messagerie instantanée</p>
+                                <h3 class="project-title">FuturCraft Institut</h3>
+                                <p class="project-description">Plateforme éducative moderne pour formations technologiques</p>
                             </div>
-                            <a href="https://example-social.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="6">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
-                        </div>
-                        
-                        <!-- Real Estate Portal -->
-                        <div class="project-card size-small" data-project="7">
-                            <img src="assets/project3.jpg" alt="Real Estate Portal" class="project-image gallery-trigger" data-gallery="7">
-                            <div class="project-info">
-                                <h3 class="project-title">PropertyHub</h3>
-                                <p class="project-description">Portail immobilier avec recherche avancée et visites virtuelles</p>
+                            <div class="project-buttons">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="6">
+                                    <i class='bx bx-link-external'></i> Visitez le site
+                                </a>
+                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="6">
+                                    <i class='bx bx-images'></i> Galerie
+                                </button>
                             </div>
-                            <a href="https://example-realestate.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="7">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
-                        </div>
-                        
-                        <!-- Healthcare Management -->
-                        <div class="project-card size-medium" data-project="8">
-                            <img src="assets/project4.jpg" alt="Healthcare Management" class="project-image gallery-trigger" data-gallery="8">
-                            <div class="project-info">
-                                <h3 class="project-title">MediCare Plus</h3>
-                                <p class="project-description">Système de gestion hospitalière avec dossiers patients digitalisés</p>
-                            </div>
-                            <a href="https://example-healthcare.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="8">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
-                        </div>
-                        
-                        <!-- Food Delivery App -->
-                        <div class="project-card size-small" data-project="9">
-                            <img src="assets/project1.jpg" alt="Food Delivery App" class="project-image gallery-trigger" data-gallery="9">
-                            <div class="project-info">
-                                <h3 class="project-title">QuickEats</h3>
-                                <p class="project-description">Application de livraison de repas avec tracking en temps réel</p>
-                            </div>
-                            <a href="https://example-delivery.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="9">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
-                        </div>
-                        
-                        <!-- CRM Dashboard -->
-                        <div class="project-card size-large" data-project="10">
-                            <img src="assets/project2.jpg" alt="CRM Dashboard" class="project-image gallery-trigger" data-gallery="10">
-                            <div class="project-info">
-                                <h3 class="project-title">SalesMaster CRM</h3>
-                                <p class="project-description">Dashboard CRM complet avec analytics et automatisation marketing</p>
-                            </div>
-                            <a href="https://example-crm.com" target="_blank" rel="noopener noreferrer" class="project-link-btn" data-project="10">
-                                Voir le site <i class='bx bx-link-external'></i>
-                            </a>
                         </div>
                     </div>
                 </div>
