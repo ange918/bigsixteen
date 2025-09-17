@@ -365,6 +365,7 @@
             justify-content: center;
             overflow: hidden;
             background: var(--bg-dark);
+            padding-top: 120px;
         }
         
         .hero-video {
@@ -680,14 +681,17 @@
         }
         
         .projects-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: start;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+            text-align: center;
         }
         
         .projects-info {
-            padding-right: 2rem;
+            padding-right: 0;
+            max-width: 800px;
+            width: 100%;
         }
         
         .projects-title {
@@ -709,10 +713,11 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-auto-flow: dense;
-            gap: 1.5rem;
-            padding: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0;
+            width: 100%;
+            max-width: 1200px;
         }
         
         .project-card {
@@ -723,28 +728,18 @@
             transition: var(--transition);
             background: var(--white);
             box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
-            aspect-ratio: 1 / 1;
+            height: 400px;
             /* États initiaux pour l'animation */
             opacity: 0;
             transform: translateY(30px);
         }
         
-        /* Différentes tailles de cartes */
-        .project-card.size-small {
-            grid-column: span 1;
-        }
-        
-        .project-card.size-medium {
-            grid-column: span 2;
-        }
-        
-        .project-card.size-large {
-            grid-column: span 2;
-        }
-        
+        /* Cartes uniformes */
+        .project-card.size-small,
+        .project-card.size-medium,
+        .project-card.size-large,
         .project-card.featured {
-            grid-column: span 2;
-            grid-row: span 1;
+            grid-column: span 1;
         }
         
         .project-image {
@@ -1387,7 +1382,6 @@
             }
             
             .projects-container {
-                grid-template-columns: 1fr;
                 gap: 2rem;
             }
             
@@ -2188,28 +2182,6 @@
     </main>
     
     <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Ange AKONDE</h3>
-                    <p>Developer FullStack passionné par l'innovation technologique et l'enseignement.</p>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <a href="#">Accueil</a>
-                <a href="#about-me">À-propos</a>
-                <a href="#projects">Projets</a>
-                <a href="#contact">Contact</a>
-                <a href="center.html">Centre de Formation</a>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Ange AKONDE. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
     
     <script>
         // Variables globales
