@@ -724,6 +724,9 @@
             background: var(--white);
             box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
             aspect-ratio: 1 / 1;
+            /* États initiaux pour l'animation */
+            opacity: 0;
+            transform: translateY(30px);
         }
         
         /* Différentes tailles de cartes */
@@ -1324,6 +1327,12 @@
                 display: flex;
             }
             
+            /* Boutons de projets toujours visibles sur mobile */
+            .project-btn {
+                opacity: 1 !important;
+                transform: scale(1) !important;
+            }
+            
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -1639,6 +1648,9 @@
                 padding: 6px 10px;
                 font-size: 0.7rem;
                 gap: 0.2rem;
+                /* Toujours visibles sur mobile */
+                opacity: 1 !important;
+                transform: scale(1) !important;
             }
             
             .project-btn i {
@@ -2314,34 +2326,47 @@
         
         // Intersection Observer pour les animations
         function setupIntersectionObserver() {
+            let lastScrollY = window.scrollY;
+            let isScrollingDown = true;
+            
+            // Détecter la direction du scroll
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                isScrollingDown = currentScrollY > lastScrollY;
+                lastScrollY = currentScrollY;
+            });
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Staggered animation pour les cartes de projets
-                        if (entry.target.classList.contains('project-card')) {
+                    const element = entry.target;
+                    
+                    if (entry.isIntersecting && isScrollingDown) {
+                        // Apparition en scrollant vers le bas
+                        if (element.classList.contains('project-card')) {
                             setTimeout(() => {
-                                entry.target.classList.add('visible');
+                                element.classList.add('visible');
                             }, index * 100);
                         } else {
-                            entry.target.classList.add('visible');
+                            element.classList.add('visible');
                         }
-                        observer.unobserve(entry.target);
+                    } else if (!entry.isIntersecting && !isScrollingDown) {
+                        // Disparition en scrollant vers le haut
+                        element.classList.remove('visible');
                     }
                 });
             }, {
-                threshold: 0.1,
+                threshold: 0.15,
                 rootMargin: '0px 0px -50px 0px'
             });
             
             // Observer tous les éléments animables
-            document.querySelectorAll('.about-text, .project-card').forEach(el => {
+            document.querySelectorAll('.about-content, .project-card, .why-item, .about, .projects, .testimonials, .contact').forEach(el => {
+                // Initialiser tous les éléments comme invisibles sauf les premiers visibles
+                const elementTop = el.getBoundingClientRect().top + window.scrollY;
+                if (elementTop > window.innerHeight) {
+                    el.classList.remove('visible');
+                }
                 observer.observe(el);
-            });
-            
-            // Observer spécial pour les bandes why-item avec animation alternée
-            const whyItems = document.querySelectorAll('.why-item');
-            whyItems.forEach((item, index) => {
-                observer.observe(item);
             });
         }
         
