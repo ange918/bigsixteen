@@ -2,6 +2,8 @@
 
 **Status: COMPLETED** ✅
 
+**Recent Update (September 2025):** Mobile typography optimized for better readability with reduced but accessible font sizes across both pages.
+
 This is a bilingual (French) personal portfolio and training center website for Ange AKONDE, a Full Stack Developer. The project consists of two complete, standalone HTML pages: a personal portfolio showcasing development skills and projects, and a training center page highlighting educational services. The website emphasizes modern web design with a cohesive "Gecko" color palette, elegant typography, and comprehensive interactive features.
 
 **Delivered Files:**
