@@ -1042,47 +1042,152 @@
             background: var(--accent);
         }
         
-        /* Testimonials Section */
+        /* Testimonials Section - Aceternity UI Style */
         .testimonials {
             padding: var(--section-padding);
-            background: var(--muted);
-        }
-        
-        .testimonials-carousel {
+            background: var(--bg-dark);
             position: relative;
             overflow: hidden;
-            margin-top: 3rem;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(25, 209, 230, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .testimonials h2 {
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .animated-testimonials {
+            position: relative;
+            max-width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+        
+        .testimonial-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(234, 248, 251, 0.95);
+            backdrop-filter: blur(16px);
             border-radius: var(--border-radius-large);
-        }
-        
-        .testimonials-track {
+            padding: 3rem;
             display: flex;
-            gap: 1.5rem;
-            animation: scroll 25s linear infinite;
-            width: calc(14 * (280px + 1.5rem));
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(179, 205, 215, 0.3);
+            box-shadow: 0 20px 60px rgba(5, 42, 61, 0.2);
         }
         
-        .testimonials-track:hover {
-            animation-play-state: paused;
+        .testimonial-card.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            z-index: 3;
         }
         
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-7 * (280px + 1.5rem))); }
+        .testimonial-card.next {
+            opacity: 0.7;
+            transform: translateY(10px) scale(0.98);
+            z-index: 2;
         }
         
-        .testimonial-video {
-            flex: 0 0 280px;
-            height: 220px;
-            border-radius: var(--border-radius);
+        .testimonial-card.prev {
+            opacity: 0.4;
+            transform: translateY(20px) scale(0.96);
+            z-index: 1;
+        }
+        
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 8px 25px rgba(5, 42, 61, 0.15);
-            transition: var(--transition);
+            border: 4px solid var(--accent);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(25, 209, 230, 0.3);
         }
         
-        .testimonial-video:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(5, 42, 61, 0.25);
+        .testimonial-quote {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--bg-dark);
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--accent);
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bg-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-role {
+            color: var(--ocean);
+            font-weight: 500;
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 4;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(179, 205, 215, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .testimonial-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+        
+        .testimonial-dot:hover {
+            background: var(--accent);
+            transform: scale(1.1);
         }
         
         /* Contact Section */
@@ -1404,20 +1509,27 @@
                 aspect-ratio: 1 / 1;
             }
             
-            .testimonial-video {
-                flex: 0 0 220px;
-                height: 160px;
+            .animated-testimonials {
+                height: 350px;
             }
             
-            .testimonials-track {
-                gap: 1rem;
-                animation: scroll 20s linear infinite;
-                width: calc(14 * (220px + 1rem));
+            .testimonial-card {
+                padding: 2rem;
             }
             
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(calc(-7 * (220px + 1rem))); }
+            .testimonial-avatar {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .testimonial-quote {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .testimonial-name {
+                font-size: 1.1rem;
             }
         }
         
@@ -2054,58 +2166,70 @@
         <!-- Testimonials Section -->
         <section class="testimonials" role="region" aria-labelledby="testimonials-title">
             <div class="container">
-                <h2 id="testimonials-title" class="text-center">Témoignages Clients</h2>
-                <div class="testimonials-carousel" aria-label="Carousel de témoignages vidéo">
-                    <div class="testimonials-track">
-                        <!-- 
-                            REMPLACER LES VIDÉOS TÉMOIGNAGES:
-                            Placez vos vidéos dans le dossier assets/ et renommez-les testimonial1.mp4 à testimonial7.mp4
-                            Recommandations: Format MP4, résolution 720p minimum, durée 30-60 secondes
-                        -->
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial1.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial2.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial3.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial4.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial5.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial6.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial7.mp4" type="video/mp4">
-                        </video>
-                        <!-- Duplicate pour l'effet de boucle infinie -->
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial1.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial2.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial3.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial4.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial5.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial6.mp4" type="video/mp4">
-                        </video>
-                        <video class="testimonial-video" autoplay muted loop playsinline>
-                            <source src="assets/testimonial7.mp4" type="video/mp4">
-                        </video>
+                <h2 id="testimonials-title">Témoignages Clients</h2>
+                <div class="animated-testimonials" aria-label="Témoignages clients animés">
+                    <div class="testimonial-card active" data-testimonial="0">
+                        <img src="assets/ange.jpg" alt="Marie Dubois" class="testimonial-avatar">
+                        <div class="testimonial-quote">
+                            Ange a transformé notre présence digitale avec un site web exceptionnel. Son expertise technique et sa créativité ont dépassé toutes nos attentes.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-name">Marie Dubois</div>
+                            <div class="testimonial-role">Directrice Marketing, TechCorp</div>
+                        </div>
                     </div>
+                    
+                    <div class="testimonial-card" data-testimonial="1">
+                        <img src="assets/junior.jpg" alt="Jean-Paul Martin" class="testimonial-avatar">
+                        <div class="testimonial-quote">
+                            Un développeur passionné qui livre des solutions sur mesure. Le projet a été livré dans les temps avec une qualité irréprochable.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-name">Jean-Paul Martin</div>
+                            <div class="testimonial-role">CEO, StartupLab</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card" data-testimonial="2">
+                        <img src="assets/ak.jpg" alt="Sophie Laurent" class="testimonial-avatar">
+                        <div class="testimonial-quote">
+                            Son approche professionnelle et sa maîtrise des technologies modernes font de lui un partenaire de choix pour tout projet digital.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-name">Sophie Laurent</div>
+                            <div class="testimonial-role">Chef de Projet, InnovCorp</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card" data-testimonial="3">
+                        <img src="assets/gauthier.png" alt="David Chen" class="testimonial-avatar">
+                        <div class="testimonial-quote">
+                            Excellent communicateur et développeur talentueux. Il comprend parfaitement les besoins business et les traduit en solutions techniques efficaces.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-name">David Chen</div>
+                            <div class="testimonial-role">Product Manager, DigitalFlow</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card" data-testimonial="4">
+                        <img src="assets/about.jpg" alt="Emma Rodriguez" class="testimonial-avatar">
+                        <div class="testimonial-quote">
+                            Une collaboration fantastique ! Ange a su créer une plateforme qui répond parfaitement à nos besoins et à ceux de nos clients.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-name">Emma Rodriguez</div>
+                            <div class="testimonial-role">Directrice Générale, WebSolutions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-controls">
+                    <button class="testimonial-dot active" data-slide="0" aria-label="Témoignage 1"></button>
+                    <button class="testimonial-dot" data-slide="1" aria-label="Témoignage 2"></button>
+                    <button class="testimonial-dot" data-slide="2" aria-label="Témoignage 3"></button>
+                    <button class="testimonial-dot" data-slide="3" aria-label="Témoignage 4"></button>
+                    <button class="testimonial-dot" data-slide="4" aria-label="Témoignage 5"></button>
                 </div>
             </div>
         </section>
@@ -2732,6 +2856,68 @@
             const aboutContent = document.querySelector('.about-content');
             if (aboutContent) {
                 aboutContentObserver.observe(aboutContent);
+            }
+
+            // Animated Testimonials - Aceternity UI Style
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            let currentTestimonial = 0;
+            let testimonialInterval;
+
+            function showTestimonial(index) {
+                // Remove all active classes
+                testimonialCards.forEach(card => card.classList.remove('active', 'next', 'prev'));
+                testimonialDots.forEach(dot => dot.classList.remove('active'));
+
+                // Add active class to current testimonial
+                testimonialCards[index].classList.add('active');
+                testimonialDots[index].classList.add('active');
+
+                // Add next and prev classes for stacking effect
+                const nextIndex = (index + 1) % testimonialCards.length;
+                const prevIndex = (index - 1 + testimonialCards.length) % testimonialCards.length;
+                
+                testimonialCards[nextIndex].classList.add('next');
+                testimonialCards[prevIndex].classList.add('prev');
+            }
+
+            function nextTestimonial() {
+                currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+                showTestimonial(currentTestimonial);
+            }
+
+            function startTestimonialAutoplay() {
+                testimonialInterval = setInterval(nextTestimonial, 5000); // Change every 5 seconds
+            }
+
+            function stopTestimonialAutoplay() {
+                if (testimonialInterval) {
+                    clearInterval(testimonialInterval);
+                }
+            }
+
+            // Initialize testimonials
+            if (testimonialCards.length > 0) {
+                showTestimonial(0);
+                startTestimonialAutoplay();
+
+                // Add click handlers to dots
+                testimonialDots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentTestimonial = index;
+                        showTestimonial(index);
+                        // Restart autoplay
+                        stopTestimonialAutoplay();
+                        startTestimonialAutoplay();
+                    });
+                });
+
+                // Pause autoplay on hover
+                const testimonialsContainer = document.querySelector('.animated-testimonials');
+                if (testimonialsContainer) {
+                    testimonialsContainer.addEventListener('mouseenter', stopTestimonialAutoplay);
+                    testimonialsContainer.addEventListener('mouseleave', startTestimonialAutoplay);
+                }
             }
         });
     </script>
