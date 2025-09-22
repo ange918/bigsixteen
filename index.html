@@ -498,7 +498,7 @@
         .about-title {
             /* Titre massif style affiche de film avec couleur Gecko */
             font-family: 'Arial Black', Arial, sans-serif;
-            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
             font-weight: 900;
             color: var(--accent);
             text-transform: uppercase;
@@ -729,7 +729,7 @@
         .project-description {
             font-family: var(--font-body);
             font-size: 1.1rem;
-            color: var(--muted);
+            color: var(--white);
             line-height: 1.6;
             margin-bottom: 2rem;
         }
@@ -1690,6 +1690,31 @@
             }
             
             /* Optimisation mobile pour les projets */
+        @media (max-width: 768px) {
+            .project-item {
+                flex-direction: column !important;
+            }
+            
+            .project-item.image-right {
+                flex-direction: column !important;
+            }
+            
+            .project-item.image-left {
+                flex-direction: column !important;
+            }
+            
+            /* Animation de gauche à droite sur mobile */
+            .project-item {
+                opacity: 0;
+                transform: translateX(-50px);
+                transition: all 0.6s ease-out;
+            }
+            
+            .project-item.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
             
             /* Boutons encore plus petits sur très petits écrans */
             .project-btn {
@@ -1853,12 +1878,16 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            Je suis <strong>Ange AKONDE</strong>, développeur FullStack passionné par l'innovation numérique. 
-                            Je crée des applications web modernes et performantes en maîtrisant l'ensemble de la stack technique.
+                            Je suis <strong>Ange AKONDE</strong>, développeur FullStack passionné par les nouvelles technologies et l'innovation numérique. Après avoir suivi une formation intensive en développement web, je crée des applications modernes, performantes et élégantes.
                         </p>
                         <p>
-                            Fondateur d'un centre de formation, je partage mes connaissances pour démocratiser 
-                            l'accès aux compétences numériques en Afrique.
+                            Ma spécialité couvre l'ensemble de la stack technique : de l'interface utilisateur intuitive au backend robuste. Je maîtrise <strong>JavaScript, React, Node.js</strong>, et les architectures modernes pour délivrer des solutions complètes et durables.
+                        </p>
+                        <p>
+                            Grâce à ma formation approfondie, j'ai acquis une expertise solide qui me permet de partager mes connaissances et d'accompagner d'autres développeurs dans leur apprentissage. Mon objectif : contribuer au développement technologique en transmettant mon savoir-faire.
+                        </p>
+                        <p>
+                            Chaque projet est une opportunité de créer quelque chose d'exceptionnel, en plaçant l'expérience utilisateur et la qualité du code au cœur de mes priorités.
                         </p>
                     </div>
                 </div>
