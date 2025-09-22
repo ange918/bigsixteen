@@ -20,6 +20,7 @@
             --bg-dark: #052A3D;
             --ocean: #117192;
             --accent: #19D1E6;
+            --accent-dark: #15B4C7;
             --brown: #614943;
             --muted: #B3CDD7;
             --white: #EAF8FB;
@@ -565,22 +566,6 @@
             font-weight: 600;
         }
         
-        /* Why Choose Me Section */
-        .why-choose {
-            padding: var(--section-padding);
-            background: var(--white);
-        }
-        
-        .why-choose h2 {
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--bg-dark);
-        }
-        
-        .why-choose-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
         
         .why-item {
             display: flex;
@@ -673,25 +658,10 @@
             color: var(--muted);
         }
         
-        /* Projects Section - Style Modern Asymétrique */
+        /* Projects Section - Alternating Layout */
         .projects {
             padding: var(--section-padding);
             background: var(--bg-dark);
-            min-height: 100vh;
-        }
-        
-        .projects-container {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .projects-info {
-            padding-right: 0;
-            max-width: 800px;
-            width: 100%;
         }
         
         .projects-title {
@@ -699,89 +669,151 @@
             font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
             line-height: 1.2;
-        }
-        
-        .projects-description {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            color: var(--muted);
-            line-height: 1.6;
-            max-width: 600px;
             text-align: center;
-            margin: 0 auto;
         }
         
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 0;
-            width: 100%;
-            max-width: 1200px;
-        }
-        
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--border-radius-large);
-            cursor: pointer;
-            transition: var(--transition);
-            background: var(--white);
-            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
-            height: 400px;
-            /* États initiaux pour l'animation */
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        /* Cartes uniformes */
-        .project-card.size-small,
-        .project-card.size-medium,
-        .project-card.size-large,
-        .project-card.featured {
-            grid-column: span 1;
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
-        
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(25, 209, 230, 0.0) 0%, rgba(25, 209, 230, 0.8) 100%);
-            opacity: 0;
-            transition: var(--transition);
+        .project-item {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
         }
         
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-        
-        
-        .project-card.visible {
+        .project-item.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .project-card:hover {
-            transform: translateY(-10px);
+        .project-item.image-right {
+            flex-direction: row-reverse;
+        }
+        
+        .project-image-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-large);
             box-shadow: 0 20px 60px rgba(17, 113, 146, 0.2);
+        }
+        
+        .project-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-image-container:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .project-description {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .project-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile Responsive for Projects */
+        @media (max-width: 768px) {
+            .project-item {
+                flex-direction: column !important;
+                gap: 2rem;
+                margin-bottom: 4rem;
+                text-align: center;
+            }
+            
+            .project-image-container {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .project-image {
+                height: 200px;
+            }
+            
+            .project-content {
+                padding: 1rem;
+            }
+            
+            .project-title {
+                font-size: 1.5rem;
+            }
+            
+            .project-description {
+                font-size: 1rem;
+            }
+            
+            .project-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-item {
+                margin-bottom: 3rem;
+            }
+            
+            .project-image {
+                height: 180px;
+            }
+            
+            .project-title {
+                font-size: 1.3rem;
+            }
+            
+            .project-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
         }
         
         
@@ -851,108 +883,13 @@
         
         
         
-        /* Informations du projet en overlay */
-        .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(5, 42, 61, 0.95));
-            color: var(--white);
-            padding: 2rem 1.5rem 1.5rem;
-            transform: translateY(100%);
-            transition: var(--transition);
-        }
         
-        .project-card:hover .project-info {
-            transform: translateY(0);
-        }
         
-        .project-info .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-            font-weight: 600;
-        }
         
-        .project-info .project-description {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.5;
-            margin-bottom: 0;
-            opacity: 1;
-        }
         
-        /* Conteneur pour les boutons de projet */
-        .project-buttons {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 10;
-            pointer-events: none;
-        }
         
-        /* Styles des boutons de projet */
-        .project-btn {
-            position: absolute;
-            padding: 10px 16px;
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--bg-dark);
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 0.85rem;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(179, 205, 215, 0.3);
-            transform: scale(0.8);
-            opacity: 0;
-            transition: var(--transition);
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 15px rgba(25, 209, 230, 0.2);
-            pointer-events: auto;
-        }
         
-        /* Bouton "Visitez le site" en haut à droite */
-        .project-visit-btn {
-            top: 1rem;
-            right: 1rem;
-        }
         
-        /* Bouton "Galerie" en bas à gauche */
-        .project-gallery-btn {
-            bottom: 1rem;
-            left: 1rem;
-            background: rgba(25, 209, 230, 0.95);
-            color: var(--white);
-        }
-        
-        /* Animation au hover de la carte */
-        .project-card:hover .project-btn {
-            transform: scale(1);
-            opacity: 1;
-        }
-        
-        /* Hover des boutons individuels */
-        .project-visit-btn:hover {
-            background: var(--accent);
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(25, 209, 230, 0.4);
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        .project-gallery-btn:hover {
-            background: var(--ocean);
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(17, 113, 146, 0.4);
-        }
         
         /* Lightbox */
         .lightbox {
@@ -1494,20 +1431,6 @@
                 padding: 0 10px;
             }
             
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .project-card,
-            .project-card.featured,
-            .project-card.size-large,
-            .project-card.size-medium,
-            .project-card.size-small {
-                grid-column: span 1;
-                max-width: 100%;
-                aspect-ratio: 1 / 1;
-            }
             
             .animated-testimonials {
                 height: 350px;
@@ -1767,15 +1690,6 @@
             }
             
             /* Optimisation mobile pour les projets */
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
-            }
-            
-            .project-card {
-                grid-column: span 1 !important;
-                aspect-ratio: 4/3;
-            }
             
             /* Boutons encore plus petits sur très petits écrans */
             .project-btn {
@@ -1938,211 +1852,136 @@
                 <!-- Contenu avec animation fade-in -->
                 <div class="about-content">
                     <div class="about-text">
-                        <!-- PERSONNALISER LE TEXTE BIO ICI -->
                         <p>
-                            Je suis <strong>Ange AKONDE</strong>, développeur FullStack passionné par les nouvelles technologies 
-                            et l'innovation numérique. Avec plusieurs années d'expérience, je crée des applications 
-                            web modernes, performantes et élégantes.
+                            Je suis <strong>Ange AKONDE</strong>, développeur FullStack passionné par l'innovation numérique. 
+                            Je crée des applications web modernes et performantes en maîtrisant l'ensemble de la stack technique.
                         </p>
                         <p>
-                            Ma spécialité couvre l'ensemble de la stack technique : de l'interface utilisateur intuitive 
-                            au backend robuste. Je maîtrise JavaScript, React, Node.js, et les architectures modernes 
-                            pour délivrer des solutions complètes et durables.
+                            Fondateur d'un centre de formation, je partage mes connaissances pour démocratiser 
+                            l'accès aux compétences numériques en Afrique.
                         </p>
-                        <p>
-                            Au-delà du développement, j'ai fondé un centre de formation pour partager mes connaissances 
-                            et former la prochaine génération de développeurs en Afrique. Mon objectif : démocratiser 
-                            l'accès aux compétences numériques et contribuer au développement technologique du continent.
-                        </p>
-                        <p>
-                            Chaque projet est une opportunité de créer quelque chose d'exceptionnel, en plaçant 
-                            l'expérience utilisateur et la qualité du code au cœur de mes priorités.
-                        </p>
-                        
-                        <!-- Cartes compétences -->
-                        <div class="skills-cards">
-                            <div class="skill-card">
-                                <i class='bx bxl-javascript'></i>
-                                <span>JavaScript ES6+</span>
-                            </div>
-                            <div class="skill-card">
-                                <i class='bx bxl-react'></i>
-                                <span>React/Next.js</span>
-                            </div>
-                            <div class="skill-card">
-                                <i class='bx bxl-nodejs'></i>
-                                <span>Node.js</span>
-                            </div>
-                            <div class="skill-card">
-                                <i class='bx bx-data'></i>
-                                <span>Databases</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Why Choose Me Section -->
-        <section class="why-choose" role="region" aria-labelledby="why-title">
-            <div class="container">
-                <h2 id="why-title">Pourquoi me choisir</h2>
-                <div class="why-choose-container">
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class='bx bx-code-alt' aria-hidden="true"></i>
-                        </div>
-                        <div class="why-content">
-                            <h3>EXPERTISE TECHNIQUE</h3>
-                            <p>
-                                Maîtrise complète des technologies modernes, frameworks et architectures cloud pour des solutions robustes et 
-                                évolutives.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class='bx bx-layer' aria-hidden="true"></i>
-                        </div>
-                        <div class="why-content">
-                            <h3>APPROCHE AGILE</h3>
-                            <p>
-                                Méthodologies agiles et DevOps pour des livraisons rapides et une collaboration efficace avec vos équipes.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class='bx bx-world' aria-hidden="true"></i>
-                        </div>
-                        <div class="why-content">
-                            <h3>VISION GLOBALE</h3>
-                            <p>
-                                Expérience internationale combinée à une compréhension profonde des marchés africains et européens.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         
         <!-- Projects Section -->
         <section id="projects" class="projects" role="region" aria-labelledby="projects-title">
             <div class="container">
-                <div class="projects-container">
-                    <!-- Info Section à gauche -->
-                    <div class="projects-info">
-                        <h2 id="projects-title" class="projects-title">Mes réalisations</h2>
-                        <p class="projects-description">
-                            Découvrez une sélection de mes projets les plus récents, alliant innovation technique et expérience utilisateur exceptionnelle. Chaque projet démontre ma maîtrise des technologies modernes.
-                        </p>
+                <h2 id="projects-title" class="projects-title">Mes réalisations</h2>
+                
+                <!-- Project 1: Image Left, Text Right -->
+                <div class="project-item image-left" data-project="1">
+                    <div class="project-image-container">
+                        <img src="assets/gauthier.png" alt="Portfolio de Ore Gauthier" class="project-image gallery-trigger" data-gallery="1">
                     </div>
-                    
-                    <!-- Grille de projets -->
-                    <div class="projects-grid">
-                        <!-- Portfolio de Ore Gauthier -->
-                        <div class="project-card featured" data-project="1">
-                            <img src="assets/gauthier.png" alt="Portfolio de Ore Gauthier" class="project-image gallery-trigger" data-gallery="1">
-                            <div class="project-info">
-                                <h3 class="project-title">Portfolio de Ore Gauthier</h3>
-                                <p class="project-description">Portfolio personnel moderne avec design élégant et interactif</p>
-                            </div>
-                            <div class="project-buttons">
-                                <a href="https://oregauthier-kuvg.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="1">
-                                    <i class='bx bx-link-external'></i> Visitez le site
-                                </a>
-                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="1">
-                                    <i class='bx bx-images'></i> Galerie
-                                </button>
-                            </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio de Ore Gauthier</h3>
+                        <p class="project-description">Portfolio personnel moderne avec design élégant et interactif. Une vitrine professionnelle mettant en valeur les compétences et réalisations.</p>
+                        <div class="project-buttons">
+                            <a href="https://oregauthier-kuvg.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                <i class='bx bx-link-external'></i> Visitez le site
+                            </a>
+                            <button class="project-btn gallery-trigger" data-gallery="1">
+                                <i class='bx bx-images'></i> Galerie
+                            </button>
                         </div>
-                        
-                        <!-- Site de MODELS ACADEMY MANAGEMENT -->
-                        <div class="project-card size-large" data-project="2">
-                            <img src="assets/modelacademy.png" alt="Site de MODELS ACADEMY MANAGEMENT" class="project-image gallery-trigger" data-gallery="2">
-                            <div class="project-info">
-                                <h3 class="project-title">MODELS ACADEMY MANAGEMENT</h3>
-                                <p class="project-description">Plateforme de gestion pour agence de mannequins et talents</p>
-                            </div>
-                            <div class="project-buttons">
-                                <a href="https://models-academy-management.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="2">
-                                    <i class='bx bx-link-external'></i> Visitez le site
-                                </a>
-                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="2">
-                                    <i class='bx bx-images'></i> Galerie
-                                </button>
-                            </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Image Right, Text Left -->
+                <div class="project-item image-right" data-project="2">
+                    <div class="project-content">
+                        <h3 class="project-title">MODELS ACADEMY MANAGEMENT</h3>
+                        <p class="project-description">Plateforme complète de gestion pour agence de mannequins et talents. Gestion des portfolios, réservations et contrats en un seul endroit.</p>
+                        <div class="project-buttons">
+                            <a href="https://models-academy-management.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                <i class='bx bx-link-external'></i> Visitez le site
+                            </a>
+                            <button class="project-btn gallery-trigger" data-gallery="2">
+                                <i class='bx bx-images'></i> Galerie
+                            </button>
                         </div>
-                        
-                        <!-- Site de code capital -->
-                        <div class="project-card size-medium" data-project="3">
-                            <img src="assets/codecapital.png" alt="Site de code capital" class="project-image gallery-trigger" data-gallery="3">
-                            <div class="project-info">
-                                <h3 class="project-title">Code Capital</h3>
-                                <p class="project-description">Plateforme d'investissement et de financement technologique</p>
-                            </div>
-                            <div class="project-buttons">
-                                <a href="https://code-capital-4sjr.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="3">
-                                    <i class='bx bx-link-external'></i> Visitez le site
-                                </a>
-                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="3">
-                                    <i class='bx bx-images'></i> Galerie
-                                </button>
-                            </div>
+                    </div>
+                    <div class="project-image-container">
+                        <img src="assets/modelacademy.png" alt="Site de MODELS ACADEMY MANAGEMENT" class="project-image gallery-trigger" data-gallery="2">
+                    </div>
+                </div>
+                
+                <!-- Project 3: Image Left, Text Right -->
+                <div class="project-item image-left" data-project="3">
+                    <div class="project-image-container">
+                        <img src="assets/codecapital.png" alt="Site de code capital" class="project-image gallery-trigger" data-gallery="3">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Code Capital</h3>
+                        <p class="project-description">Plateforme innovante d'investissement et de financement technologique. Interface moderne pour connecter investisseurs et projets tech.</p>
+                        <div class="project-buttons">
+                            <a href="https://code-capital-4sjr.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                <i class='bx bx-link-external'></i> Visitez le site
+                            </a>
+                            <button class="project-btn gallery-trigger" data-gallery="3">
+                                <i class='bx bx-images'></i> Galerie
+                            </button>
                         </div>
-                        
-                        <!-- Portfolio de Merveille Susuni -->
-                        <div class="project-card size-small" data-project="4">
-                            <img src="assets/merveil.png" alt="Portfolio de Merveille Susuni" class="project-image gallery-trigger" data-gallery="4">
-                            <div class="project-info">
-                                <h3 class="project-title">Portfolio de Merveille Susuni</h3>
-                                <p class="project-description">Portfolio personnel de Merveille Susuni </p>
-                            </div>
-                            <div class="project-buttons">
-                                <a href="https://merveilsusuni-1zqz.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="4">
-                                    <i class='bx bx-link-external'></i> Visitez le site
-                                </a>
-                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="4">
-                                    <i class='bx bx-images'></i> Galerie
-                                </button>
-                            </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Image Right, Text Left -->
+                <div class="project-item image-right" data-project="4">
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio de Merveille Susuni</h3>
+                        <p class="project-description">Site vitrine personnel élégant et responsive. Design épuré mettant en avant les projets et l'expertise de Merveille.</p>
+                        <div class="project-buttons">
+                            <a href="https://merveilsusuni-1zqz.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                <i class='bx bx-link-external'></i> Visitez le site
+                            </a>
+                            <button class="project-btn gallery-trigger" data-gallery="4">
+                                <i class='bx bx-images'></i> Galerie
+                            </button>
                         </div>
-                        
-                        <!-- Portfolio du président DJANGOUN -->
-                        <div class="project-card size-medium" data-project="5">
-                            <img src="assets/djangoun.png" alt="Portfolio du président DJANGOUN" class="project-image gallery-trigger" data-gallery="5">
-                            <div class="project-info">
-                                <h3 class="project-title">Portfolio du président DJANGOUN</h3>
-                                <p class="project-description">Site vitrine du président DJANGOUN</p>
-                            </div>
-                            <div class="project-buttons">
-                                <a href="https://presidentdjangoun.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="5">
-                                    <i class='bx bx-link-external'></i> Visitez le site
-                                </a>
-                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="5">
-                                    <i class='bx bx-images'></i> Galerie
-                                </button>
-                            </div>
+                    </div>
+                    <div class="project-image-container">
+                        <img src="assets/merveil.png" alt="Portfolio de Merveille Susuni" class="project-image gallery-trigger" data-gallery="4">
+                    </div>
+                </div>
+                
+                <!-- Project 5: Image Left, Text Right -->
+                <div class="project-item image-left" data-project="5">
+                    <div class="project-image-container">
+                        <img src="assets/djangoun.png" alt="Portfolio du président DJANGOUN" class="project-image gallery-trigger" data-gallery="5">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio du président DJANGOUN</h3>
+                        <p class="project-description">Site officiel présidentiel avec design institutionnel moderne. Plateforme de communication et présentation des actions politiques.</p>
+                        <div class="project-buttons">
+                            <a href="https://presidentdjangoun.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                <i class='bx bx-link-external'></i> Visitez le site
+                            </a>
+                            <button class="project-btn gallery-trigger" data-gallery="5">
+                                <i class='bx bx-images'></i> Galerie
+                            </button>
                         </div>
-                        
-                        <!-- Site de FuturCraft Institut -->
-                        <div class="project-card size-large" data-project="6">
-                            <img src="assets/futurcraft.png" alt="Site de FuturCraft Institut" class="project-image gallery-trigger" data-gallery="6">
-                            <div class="project-info">
-                                <h3 class="project-title">FuturCraft Institut</h3>
-                                <p class="project-description">Centre de formation en technologies avancées</p>
-                            </div>
-                            <div class="project-buttons">
-                                <a href="https://futurcraft-instut-qdy5.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-visit-btn" data-project="6">
-                                    <i class='bx bx-link-external'></i> Visitez le site
-                                </a>
-                                <button class="project-btn project-gallery-btn gallery-trigger" data-gallery="6">
-                                    <i class='bx bx-images'></i> Galerie
-                                </button>
-                            </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6: Image Right, Text Left -->
+                <div class="project-item image-right" data-project="6">
+                    <div class="project-content">
+                        <h3 class="project-title">FuturCraft Institut</h3>
+                        <p class="project-description">Centre de formation en technologies avancées. Plateforme éducative moderne pour l'apprentissage des nouvelles technologies.</p>
+                        <div class="project-buttons">
+                            <a href="https://futurcraft-instut-qdy5.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn">
+                                <i class='bx bx-link-external'></i> Visitez le site
+                            </a>
+                            <button class="project-btn gallery-trigger" data-gallery="6">
+                                <i class='bx bx-images'></i> Galerie
+                            </button>
                         </div>
+                    </div>
+                    <div class="project-image-container">
+                        <img src="assets/futurcraft.png" alt="Site de FuturCraft Institut" class="project-image gallery-trigger" data-gallery="6">
                     </div>
                 </div>
             </div>
@@ -2484,7 +2323,7 @@
             });
             
             // Observer tous les éléments animables
-            document.querySelectorAll('.about-content, .project-card, .why-item, .about, .projects, .testimonials, .contact').forEach(el => {
+            document.querySelectorAll('.about-content, .project-item, .about, .projects, .testimonials, .contact').forEach(el => {
                 // Initialiser tous les éléments comme invisibles sauf les premiers visibles
                 const elementTop = el.getBoundingClientRect().top + window.scrollY;
                 if (elementTop > window.innerHeight) {
