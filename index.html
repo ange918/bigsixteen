@@ -569,23 +569,15 @@
             font-weight: 600;
         }
         
-        /* Why Choose Me Section */
+        /* Why Choose Me Section - Infographie Circulaire */
         .why-section {
             padding: var(--section-padding);
             background: var(--white);
             position: relative;
             overflow: hidden;
-        }
-        
-        .why-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(25, 209, 230, 0.03) 0%, rgba(17, 113, 146, 0.05) 100%);
-            pointer-events: none;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
         
         .section-title {
@@ -611,158 +603,171 @@
             border-radius: 2px;
         }
         
-        .why-items {
+        /* Infographie circulaire */
+        .circular-infographic {
             position: relative;
-            z-index: 2;
-        }
-        
-        
-        .why-item {
-            display: flex;
-            align-items: center;
-            padding: 3rem 2rem;
-            margin: 0;
-            border-radius: 0;
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        /* Animation depuis la gauche pour les éléments impairs */
-        .why-item:nth-child(odd) {
-            transform: translateX(-100px);
-        }
-        
-        /* Animation depuis la droite pour les éléments pairs */
-        .why-item:nth-child(even) {
-            transform: translateX(100px);
-        }
-        
-        .why-item.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .why-item:nth-child(even) {
-            background: linear-gradient(rgba(125, 90, 72, 0.85), rgba(125, 90, 72, 0.85)), url('assets/ak.jpg') center/cover;
-            color: var(--white);
-            flex-direction: row-reverse;
-        }
-        
-        .why-item:nth-child(odd) {
-            background: linear-gradient(rgba(179, 205, 215, 0.85), rgba(179, 205, 215, 0.85)), url('assets/junior.jpg') center/cover;
-            color: var(--bg-dark);
-        }
-        
-        .why-item:nth-child(3) {
-            background: linear-gradient(rgba(125, 90, 72, 0.85), rgba(125, 90, 72, 0.85)), url('assets/ak.jpg') center/cover;
-            color: var(--white);
-        }
-        
-        .why-icon {
-            width: 80px;
-            height: 80px;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            margin: 0 3rem;
+        }
+        
+        /* Cercle central */
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #4A90E2, #357ABD);
             border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+            z-index: 10;
+            transition: all 0.3s ease;
         }
         
-        .why-item:nth-child(even) .why-icon {
-            background: rgba(25, 209, 230, 0.15);
-            color: var(--accent);
+        .center-circle:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
         }
         
-        .why-item:nth-child(odd) .why-icon {
-            background: var(--accent);
-            color: var(--white);
-        }
-        
-        .why-icon i {
+        .center-icon {
             font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
         
-        .why-content {
-            flex: 1;
-        }
-        
-        .why-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        
-        .why-item:nth-child(even) .why-content h3 {
-            color: var(--white);
-        }
-        
-        .why-content p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin: 0;
-            opacity: 0.9;
-        }
-        
-        .why-item:nth-child(even) .why-content p {
-            color: var(--muted);
-        }
-        
-        /* Why Section Specific Styles */
-        .why-section .why-item {
-            background: var(--white);
-            box-shadow: 0 10px 30px rgba(5, 42, 61, 0.1);
-            border-radius: var(--border-radius-large);
-            margin-bottom: 2rem;
-            border: 1px solid rgba(179, 205, 215, 0.3);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(50px);
-            opacity: 0;
-        }
-        
-        .why-section .why-item.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .why-section .why-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(25, 209, 230, 0.2);
-        }
-        
-        .why-section .why-item:nth-child(1) { animation-delay: 0.1s; }
-        .why-section .why-item:nth-child(2) { animation-delay: 0.2s; }
-        .why-section .why-item:nth-child(3) { animation-delay: 0.3s; }
-        .why-section .why-item:nth-child(4) { animation-delay: 0.4s; }
-        
-        .why-section .why-icon {
-            background: linear-gradient(135deg, var(--accent), var(--ocean));
-            color: var(--white);
-            box-shadow: 0 8px 25px rgba(25, 209, 230, 0.3);
-        }
-        
-        .why-section .why-content h3 {
-            color: var(--bg-dark);
+        .center-text {
             font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 1px;
         }
         
-        .why-section .why-content p {
-            color: var(--bg-dark);
-            opacity: 0.8;
+        
+        /* Lignes de connexion */
+        .connection-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
         }
         
-        /* Reset problematic styles for why-section */
-        .why-section .why-item:nth-child(even),
-        .why-section .why-item:nth-child(odd) {
-            background: var(--white);
-            color: var(--bg-dark);
-            flex-direction: row;
-            transform: translateY(50px);
+        .line {
+            position: absolute;
+            background: linear-gradient(135deg, var(--accent), var(--ocean));
+            height: 2px;
+            width: 160px;
+            left: 50%;
+            top: 50%;
+            transform-origin: 0% 50%;
+            opacity: 0.4;
+            transition: all 0.3s ease;
         }
         
-        .why-section .why-item:nth-child(even).visible,
-        .why-section .why-item:nth-child(odd).visible {
-            transform: translateY(0);
+        .line-1 { transform: translate(0%, -50%) rotate(0deg); }
+        .line-2 { transform: translate(0%, -50%) rotate(45deg); }
+        .line-3 { transform: translate(0%, -50%) rotate(90deg); }
+        .line-4 { transform: translate(0%, -50%) rotate(135deg); }
+        .line-5 { transform: translate(0%, -50%) rotate(180deg); }
+        .line-6 { transform: translate(0%, -50%) rotate(225deg); }
+        .line-7 { transform: translate(0%, -50%) rotate(270deg); }
+        .line-8 { transform: translate(0%, -50%) rotate(315deg); }
+        
+        /* Cercles extérieurs */
+        .outer-circle {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            box-sizing: border-box;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 5;
+        }
+        
+        .outer-circle:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .circle-1:hover { transform: translate(-50%, -50%) rotate(0deg) translate(230px) rotate(0deg) scale(1.05); }
+        .circle-2:hover { transform: translate(-50%, -50%) rotate(45deg) translate(230px) rotate(-45deg) scale(1.05); }
+        .circle-3:hover { transform: translate(-50%, -50%) rotate(90deg) translate(230px) rotate(-90deg) scale(1.05); }
+        .circle-4:hover { transform: translate(-50%, -50%) rotate(135deg) translate(230px) rotate(-135deg) scale(1.05); }
+        .circle-5:hover { transform: translate(-50%, -50%) rotate(180deg) translate(230px) rotate(-180deg) scale(1.05); }
+        .circle-6:hover { transform: translate(-50%, -50%) rotate(225deg) translate(230px) rotate(-225deg) scale(1.05); }
+        .circle-7:hover { transform: translate(-50%, -50%) rotate(270deg) translate(230px) rotate(-270deg) scale(1.05); }
+        .circle-8:hover { transform: translate(-50%, -50%) rotate(315deg) translate(230px) rotate(-315deg) scale(1.05); }
+        
+        .circular-infographic:hover .line {
+            opacity: 0.7;
+        }
+        
+        /* Positionnement polaire des cercles (8 positions à 45° d'intervalle) */
+        .outer-circle {
+            top: 50%;
+            left: 50%;
+        }
+        
+        .circle-1 { transform: translate(-50%, -50%) rotate(0deg) translate(230px) rotate(0deg); }
+        .circle-2 { transform: translate(-50%, -50%) rotate(45deg) translate(230px) rotate(-45deg); }
+        .circle-3 { transform: translate(-50%, -50%) rotate(90deg) translate(230px) rotate(-90deg); }
+        .circle-4 { transform: translate(-50%, -50%) rotate(135deg) translate(230px) rotate(-135deg); }
+        .circle-5 { transform: translate(-50%, -50%) rotate(180deg) translate(230px) rotate(-180deg); }
+        .circle-6 { transform: translate(-50%, -50%) rotate(225deg) translate(230px) rotate(-225deg); }
+        .circle-7 { transform: translate(-50%, -50%) rotate(270deg) translate(230px) rotate(-270deg); }
+        .circle-8 { transform: translate(-50%, -50%) rotate(315deg) translate(230px) rotate(-315deg); }
+        
+        /* Couleurs spécifiques */
+        .green { background: linear-gradient(135deg, #4CAF50, #45a049); color: white; }
+        .purple { background: linear-gradient(135deg, #9C27B0, #8E24AA); color: white; }
+        .orange { background: linear-gradient(135deg, #FF9800, #F57C00); color: white; }
+        .light-green { background: linear-gradient(135deg, #8BC34A, #7CB342); color: white; }
+        .pink { background: linear-gradient(135deg, #E91E63, #C2185B); color: white; }
+        .red { background: linear-gradient(135deg, #F44336, #E53935); color: white; }
+        .turquoise { background: linear-gradient(135deg, #00BCD4, #00ACC1); color: white; }
+        .dark-red { background: linear-gradient(135deg, #B71C1C, #C62828); color: white; }
+        
+        /* Icônes et texte des cercles */
+        .circle-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .circle-text h4 {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 0 0.3rem 0;
+            line-height: 1.1;
+            letter-spacing: 0.5px;
+        }
+        
+        .circle-text p {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            text-align: center;
+            margin: 0;
+            line-height: 1.2;
+            opacity: 0.9;
         }
         
         /* Projects Section - Alternating Layout */
@@ -1488,13 +1493,69 @@
                 flex-direction: column !important;
             }
             
-            .why-icon {
-                margin: 0 0 1.5rem 0;
+            /* Responsive Infographie Circulaire */
+            .circular-infographic {
+                width: 90vw;
+                height: 90vw;
+                max-width: 500px;
+                max-height: 500px;
             }
             
-            .why-content h3 {
-                font-size: 1.3rem;
+            .center-circle {
+                width: 120px;
+                height: 120px;
             }
+            
+            .center-icon {
+                font-size: 1.8rem;
+            }
+            
+            .center-text {
+                font-size: 0.7rem;
+            }
+            
+            .outer-circle {
+                width: 100px;
+                height: 100px;
+                padding: 0.8rem;
+            }
+            
+            .circle-icon {
+                font-size: 1.5rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .circle-text h4 {
+                font-size: 0.6rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .circle-text p {
+                font-size: 0.5rem;
+            }
+            
+            .line {
+                width: 100px;
+            }
+            
+            /* Positionnement mobile */
+            .circle-1 { transform: translate(-50%, -50%) rotate(0deg) translate(180px) rotate(0deg); }
+            .circle-2 { transform: translate(-50%, -50%) rotate(45deg) translate(180px) rotate(-45deg); }
+            .circle-3 { transform: translate(-50%, -50%) rotate(90deg) translate(180px) rotate(-90deg); }
+            .circle-4 { transform: translate(-50%, -50%) rotate(135deg) translate(180px) rotate(-135deg); }
+            .circle-5 { transform: translate(-50%, -50%) rotate(180deg) translate(180px) rotate(-180deg); }
+            .circle-6 { transform: translate(-50%, -50%) rotate(225deg) translate(180px) rotate(-225deg); }
+            .circle-7 { transform: translate(-50%, -50%) rotate(270deg) translate(180px) rotate(-270deg); }
+            .circle-8 { transform: translate(-50%, -50%) rotate(315deg) translate(180px) rotate(-315deg); }
+            
+            .circle-1:hover { transform: translate(-50%, -50%) rotate(0deg) translate(180px) rotate(0deg) scale(1.05); }
+            .circle-2:hover { transform: translate(-50%, -50%) rotate(45deg) translate(180px) rotate(-45deg) scale(1.05); }
+            .circle-3:hover { transform: translate(-50%, -50%) rotate(90deg) translate(180px) rotate(-90deg) scale(1.05); }
+            .circle-4:hover { transform: translate(-50%, -50%) rotate(135deg) translate(180px) rotate(-135deg) scale(1.05); }
+            .circle-5:hover { transform: translate(-50%, -50%) rotate(180deg) translate(180px) rotate(-180deg) scale(1.05); }
+            .circle-6:hover { transform: translate(-50%, -50%) rotate(225deg) translate(180px) rotate(-225deg) scale(1.05); }
+            .circle-7:hover { transform: translate(-50%, -50%) rotate(270deg) translate(180px) rotate(-270deg) scale(1.05); }
+            .circle-8:hover { transform: translate(-50%, -50%) rotate(315deg) translate(180px) rotate(-315deg) scale(1.05); }
             
             .projects-container {
                 gap: 2rem;
@@ -1544,6 +1605,70 @@
                 padding: 0 10px;
             }
             
+            
+            /* Infographie très petit écran */
+            .circular-infographic {
+                width: 95vw;
+                height: 95vw;
+                max-width: 400px;
+                max-height: 400px;
+            }
+            
+            .center-circle {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .center-icon {
+                font-size: 1.5rem;
+            }
+            
+            .center-text {
+                font-size: 0.6rem;
+            }
+            
+            .outer-circle {
+                width: 80px;
+                height: 80px;
+                padding: 0.5rem;
+            }
+            
+            .circle-icon {
+                font-size: 1.2rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .circle-text h4 {
+                font-size: 0.5rem;
+                margin-bottom: 0.1rem;
+            }
+            
+            .circle-text p {
+                font-size: 0.45rem;
+            }
+            
+            .line {
+                width: 80px;
+            }
+            
+            /* Positionnement très petit écran */
+            .circle-1 { transform: translate(-50%, -50%) rotate(0deg) translate(140px) rotate(0deg); }
+            .circle-2 { transform: translate(-50%, -50%) rotate(45deg) translate(140px) rotate(-45deg); }
+            .circle-3 { transform: translate(-50%, -50%) rotate(90deg) translate(140px) rotate(-90deg); }
+            .circle-4 { transform: translate(-50%, -50%) rotate(135deg) translate(140px) rotate(-135deg); }
+            .circle-5 { transform: translate(-50%, -50%) rotate(180deg) translate(140px) rotate(-180deg); }
+            .circle-6 { transform: translate(-50%, -50%) rotate(225deg) translate(140px) rotate(-225deg); }
+            .circle-7 { transform: translate(-50%, -50%) rotate(270deg) translate(140px) rotate(-270deg); }
+            .circle-8 { transform: translate(-50%, -50%) rotate(315deg) translate(140px) rotate(-315deg); }
+            
+            .circle-1:hover { transform: translate(-50%, -50%) rotate(0deg) translate(140px) rotate(0deg) scale(1.05); }
+            .circle-2:hover { transform: translate(-50%, -50%) rotate(45deg) translate(140px) rotate(-45deg) scale(1.05); }
+            .circle-3:hover { transform: translate(-50%, -50%) rotate(90deg) translate(140px) rotate(-90deg) scale(1.05); }
+            .circle-4:hover { transform: translate(-50%, -50%) rotate(135deg) translate(140px) rotate(-135deg) scale(1.05); }
+            .circle-5:hover { transform: translate(-50%, -50%) rotate(180deg) translate(140px) rotate(-180deg) scale(1.05); }
+            .circle-6:hover { transform: translate(-50%, -50%) rotate(225deg) translate(140px) rotate(-225deg) scale(1.05); }
+            .circle-7:hover { transform: translate(-50%, -50%) rotate(270deg) translate(140px) rotate(-270deg) scale(1.05); }
+            .circle-8:hover { transform: translate(-50%, -50%) rotate(315deg) translate(140px) rotate(-315deg) scale(1.05); }
             
             .animated-testimonials {
                 height: 350px;
@@ -2007,53 +2132,118 @@
             </div>
         </section>
         
-        <!-- Why Choose Me Section -->
+        <!-- Why Choose Me Section - Infographie Circulaire -->
         <section id="why-choose-me" class="why-section" role="region" aria-labelledby="why-title">
             <div class="container">
                 <h2 id="why-title" class="section-title">Pourquoi me choisir ?</h2>
                 
-                <div class="why-items">
-                    <!-- Item 1: Expertise Technique -->
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class='bx bx-code-alt'></i>
-                        </div>
-                        <div class="why-content">
-                            <h3>Expertise Technique Complète</h3>
-                            <p>Maîtrise parfaite des technologies modernes : JavaScript, React, Node.js, bases de données. Je couvre l'ensemble de la stack pour des solutions robustes et évolutives.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 2: Design Moderne -->
-                    <div class="why-item">
-                        <div class="why-icon">
+                <div class="circular-infographic">
+                    <!-- Cercle central -->
+                    <div class="center-circle">
+                        <div class="center-icon">
                             <i class='bx bx-palette'></i>
                         </div>
-                        <div class="why-content">
-                            <h3>Design Moderne & Responsive</h3>
-                            <p>Interfaces élégantes et intuitives qui s'adaptent parfaitement à tous les écrans. Design centré sur l'expérience utilisateur pour maximiser l'engagement.</p>
+                        <div class="center-text">GRAPHISME<br>EFFICACE</div>
+                    </div>
+                    
+                    <!-- Lignes de connexion -->
+                    <div class="connection-lines">
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                        <div class="line line-4"></div>
+                        <div class="line line-5"></div>
+                        <div class="line line-6"></div>
+                        <div class="line line-7"></div>
+                        <div class="line line-8"></div>
+                    </div>
+                    
+                    <!-- 8 cercles périphériques -->
+                    <!-- Cercle 1: Vert - USABILITÉ -->
+                    <div class="outer-circle circle-1 green">
+                        <div class="circle-icon">
+                            <i class='bx bx-like'></i>
+                        </div>
+                        <div class="circle-text">
+                            <h4>USABILITÉ</h4>
+                            <p>Facilitez la navigation</p>
                         </div>
                     </div>
                     
-                    <!-- Item 3: Livraison Rapide -->
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class='bx bx-rocket'></i>
+                    <!-- Cercle 2: Violet - PERSONNALISATION -->
+                    <div class="outer-circle circle-2 purple">
+                        <div class="circle-icon">
+                            <i class='bx bx-user'></i>
                         </div>
-                        <div class="why-content">
-                            <h3>Livraison Rapide & Qualité</h3>
-                            <p>Respect des délais avec un code propre et performant. Méthodologie agile pour des résultats qui dépassent vos attentes, livrés dans les temps.</p>
+                        <div class="circle-text">
+                            <h4>PERSONNALISATION</h4>
+                            <p>Faites une bonne première impression</p>
                         </div>
                     </div>
                     
-                    <!-- Item 4: Support Continu -->
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class='bx bx-support'></i>
+                    <!-- Cercle 3: Orange - CONVERSION -->
+                    <div class="outer-circle circle-3 orange">
+                        <div class="circle-icon">
+                            <i class='bx bx-shopping-bag'></i>
                         </div>
-                        <div class="why-content">
-                            <h3>Support & Maintenance</h3>
-                            <p>Accompagnement complet même après livraison. Formation, maintenance et évolutions pour assurer la pérennité et le succès de votre projet.</p>
+                        <div class="circle-text">
+                            <h4>CONVERSION</h4>
+                            <p>Gagnez des clients</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cercle 4: Vert clair - INTERACTIVITÉ -->
+                    <div class="outer-circle circle-4 light-green">
+                        <div class="circle-icon">
+                            <i class='bx bx-pointer'></i>
+                        </div>
+                        <div class="circle-text">
+                            <h4>INTERACTIVITÉ</h4>
+                            <p>Votre visiteur devient acteur</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cercle 5: Rose - LISIBILITÉ -->
+                    <div class="outer-circle circle-5 pink">
+                        <div class="circle-icon">
+                            <i class='bx bx-font-size'></i>
+                        </div>
+                        <div class="circle-text">
+                            <h4>LISIBILITÉ</h4>
+                            <p>Favorisez une bonne lecture</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cercle 6: Rouge - HIÉRARCHISATION -->
+                    <div class="outer-circle circle-6 red">
+                        <div class="circle-icon">
+                            <i class='bx bx-folder-open'></i>
+                        </div>
+                        <div class="circle-text">
+                            <h4>HIÉRARCHISATION DU CONTENU</h4>
+                            <p>Mettez en avant vos produits phares</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cercle 7: Turquoise - AIDA -->
+                    <div class="outer-circle circle-7 turquoise">
+                        <div class="circle-icon">
+                            <i class='bx bx-trending-up'></i>
+                        </div>
+                        <div class="circle-text">
+                            <h4>AIDA</h4>
+                            <p>Attention, Intérêt, Désir, Action</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cercle 8: Rouge foncé - IMMÉDIATETÉ -->
+                    <div class="outer-circle circle-8 dark-red">
+                        <div class="circle-icon">
+                            <i class='bx bx-time-five'></i>
+                        </div>
+                        <div class="circle-text">
+                            <h4>IMMÉDIATETÉ</h4>
+                            <p>&lt; 15s pour charger une page</p>
                         </div>
                     </div>
                 </div>
